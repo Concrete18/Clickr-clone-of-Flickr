@@ -2,3 +2,5 @@
 .env
 build
 .DS_Store
+.vscode/
+photo_data_page*
