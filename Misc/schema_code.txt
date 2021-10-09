@@ -1,0 +1,44 @@
+Table users {
+  id int [pk, increment]
+  email varchar [unique]
+  userName varchar [unique]
+  hashedPassword varchar
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Table photos {
+  id int [pk, increment]
+  albumId int
+  title varchar
+  description varchar
+  imgUrl varchar
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Table comments {
+  id int [pk, increment]
+  userId int
+  photoId int
+  commentBody varchar
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Table albums {
+  id int [pk, increment]
+  userId int
+  title varchar
+  description varchar
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Ref: "users"."id" < "comments"."userId"
+
+Ref: "albums"."userId" < "users"."id"
+
+Ref: "photos"."albumId" < "albums"."id"
+
+Ref: "comments"."photoId" < "photos"."id"
