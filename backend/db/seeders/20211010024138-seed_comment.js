@@ -1,26 +1,46 @@
 'use strict';
 
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+function getRandomNum(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
 
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+const comments = [
+  'Great photo!',
+  'Awesome image!',
+  'I love this!',
+  'Great Shot!',
+  'How did you take this?',
+  'I love the contrast!',
+]
+
+const fakeComments = [
+  {
+    userId: 1,
+    photoId: 1,
+    commentBody: 'Great photo!',
+    createdAt: new Date(),
+    updatedAt: new Date()
   },
+];
+
+for (let i = 0; i <= 800; i++) {
+  let newComment = {
+    userId: getRandomNum(1, 300),
+    // TODO update match total number of photos in database
+    photoId: getRandomNum(0, 200),
+    commentBody: comments[getRandomNum(0, comments.length-1)],
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+  fakeComments.push(newComment);
+};
+
+module.exports = {
+up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('Comments', fakeComments, {});
+},
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+    return queryInterface.bulkDelete('Comments', null, {});
   }
 };
