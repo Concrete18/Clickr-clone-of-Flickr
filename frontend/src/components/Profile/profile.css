@@ -1,0 +1,24 @@
+.profile_page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_info {
+    background-image: url("paper.gif");
+}
+
+.gallery {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* margin: auto; */
+}
+
+.gallery_image {
+    height: 400px;
+    object-fit: cover;
+    vertical-align: bottom;
+    padding: 3px;
+}
