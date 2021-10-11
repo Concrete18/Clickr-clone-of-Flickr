@@ -2,10 +2,14 @@ const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const photoRouter = require("./photos.js");
+const commentRouter = require("./comments.js");
+const albumRouter = require("./albums.js");
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use("/photos", photoRouter);
+router.use("/comments", commentRouter);
+router.use("/albums", albumRouter);
 
 // GET /api/set-token-cookie
 const asyncHandler = require('express-async-handler');
