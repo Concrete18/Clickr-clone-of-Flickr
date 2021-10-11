@@ -35,9 +35,7 @@ npx dotenv sequelize db:seed:all
 
 npx dotenv sequelize db:seed:undo:all
 
-npx dotenv sequelize db:drop
-
-npx dotenv sequelize db:create
+npx dotenv sequelize db:drop && npx dotenv sequelize db:create
 ```
 
 ## Combined Code for drop/migrate/seed
