@@ -22,6 +22,7 @@ for (let i = 0; i <= seedPhotos.length-1; i++) {
     albumId: 1,
     title: seedPhotos[i].title,
     description: photoDescriptions[getRandomNum(0, photoDescriptions.length-1)],
+    imgUrl: seedPhotos[i].imageUrl,
     createdAt: new Date(),
     updatedAt: new Date()
   }
