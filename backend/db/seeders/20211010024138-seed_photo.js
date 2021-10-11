@@ -8,7 +8,14 @@ function getRandomNum(min, max) {
 
 const photoDescriptions = [
   'I took this photo for fun.',
-  'I enjoyed taking this photo.'
+  'I enjoyed taking this photo.',
+  'I took this during the weekend.',
+  'I took this photo for fun.',
+  'I took this photo for fun.',
+  'I took this photo for fun.',
+  'I took this photo for fun.',
+  'I took this photo for fun.',
+  'I took this photo for fun.',
 ]
 
 const photos = []
