@@ -11,18 +11,14 @@ const photoDescriptions = [
   'I enjoyed taking this photo.',
   'I took this during the weekend.',
   'I took this photo for fun.',
-  'I took this photo for fun.',
-  'I took this photo for fun.',
-  'I took this photo for fun.',
-  'I took this photo for fun.',
-  'I took this photo for fun.',
 ]
 
 const photos = []
 
 // my profile seeder
-for (let i = 0; i == seedPhotos.length; i++) {
+for (let i = 0; i <= seedPhotos.length-1; i++) {
   let newPhoto = {
+    userId: 2,
     albumId: 1,
     title: seedPhotos[i].title,
     description: photoDescriptions[getRandomNum(0, photoDescriptions.length-1)],
@@ -33,9 +29,10 @@ for (let i = 0; i == seedPhotos.length; i++) {
 };
 
 // other profiles seeder
-for (let i = 0; i <= 300; i++) {
+for (let i = 0; i <= 600; i++) {
   let newPhoto = {
-    albumId: 1,
+    userId: getRandomNum(1, 300),
+    albumId: i,
     title: seedPhotos[getRandomNum(0, seedPhotos.length-1)].title,
     description: photoDescriptions[getRandomNum(0, photoDescriptions.length-1)],
     imgUrl: seedPhotos[getRandomNum(0, seedPhotos.length)].imageUrl,

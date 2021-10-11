@@ -2,12 +2,13 @@
 module.exports = (sequelize, DataTypes) => {
   const Photo = sequelize.define('Photo', {
     title: DataTypes.STRING,
-    albumId: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
+    albumId: DataTypes.INTEGER,
     description: DataTypes.STRING,
     imgUrl: DataTypes.STRING
   }, {});
   Photo.associate = function(models) {
-    // associations can be defined here
+    Photo.belongsTo(models.Album, {foreignKey:'albumId'})
   };
   return Photo;
 };

@@ -1,10 +1,18 @@
 const { Photo } = require("./models");
 
 async function list() {
-    return await Photo.findAll();
-  }
+  return await Photo.findAll();
+}
 
-  module.exports = {
-    list,
-  };
-  
+async function findPhotosByUserId(id) {
+  return await Photo.findAll(
+    {
+      where: { userId:id }
+    }
+  );
+}
+
+module.exports = {
+  list,
+  findPhotosByUserId,
+};
