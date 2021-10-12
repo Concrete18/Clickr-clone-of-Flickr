@@ -4,7 +4,7 @@ async function list() {
   return await Photo.findAll();
 }
 
-async function findPhotosByUserId(userId, limit=100) {
+async function findPhotosByUserId(userId, limit=500) {
   return await Photo.findAll(
     {
       where: { userId },
