@@ -28,6 +28,17 @@ export const getUserPhotos = (userId) => async (dispatch) => {
   }
 }
 
+export const getPhoto = (photoId) => async (dispatch) => {
+  const response = await fetch(`/api/photos/${photoId}`, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  })
+  if (response.ok) {
+    const photo = await response.json();
+    dispatch(addPhoto(photo, photoId));
+  }
+}
+
 // export const uploadPhoto = (photo) => async (dispatch) => {
 //   const { title, albumId, description } = photo;
 //   const response = await csrfFetch("/api/users", {
