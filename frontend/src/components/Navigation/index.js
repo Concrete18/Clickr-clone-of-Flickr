@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import logo from '../../images/logo.png'
@@ -22,7 +21,6 @@ function Navigation({ isLoaded }){
         <NavLink to={`/profile/${sessionUser.id}`} className='nav_link' >{sessionUser.username}</NavLink>
         <button onClick={logout}>Log Out</button>
       </div>
-      // <ProfileButton user={sessionUser} />
     );
   } else {
     sessionLinks = (

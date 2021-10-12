@@ -11,17 +11,35 @@ function Profile() {
   const sessionUser = useSelector(state => state.session.user);
   const photos = useSelector(state => state.photos);
 
+const [username, setUsername] = useState('Unknown')
+const [totalPhotos, setTotalPhotos] = useState('0 Photos')
+const [joinedDate, setJoinedDate] = useState('Joined 2021')
 
-  // TODO wrong data
-  // const username = sessionUser.username
-  const username = 'ErisconPhotography'
-  // const totalPhotos = `${photos[userId].length} Photos`
-  const totalPhotos = `800 Photos`
-  // const joinedDate = `Joined ${sessionUser.createdAt}`
-  const joinedDate = 'Joined 2021'
+
+const getUserData = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/photos/${userId}`, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  })
+  if (response.ok) {
+    const user = await response.json();
+    return user
+  }
+}
+
+// const username = 'ErisconPhotography'
+// const totalPhotos = `800 Photos`
+// const joinedDate = 'Joined 2021'
 
   useEffect(() => {
     dispatch(getUserPhotos(userId))
+    // TODO get userData
+    const user = getUserData()
+    setUsername(user.username)
+    setJoinedDate(user.createdAt)
+    // const totalPhotos = `${photos[userId].length} Photos`
+    setTotalPhotos(photos.length)
+    // const joinedDate = `Joined ${sessionUser.createdAt}`
   }, [userId])
 
   return (
