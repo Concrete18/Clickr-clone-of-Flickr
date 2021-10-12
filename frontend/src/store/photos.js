@@ -18,7 +18,7 @@ const removePhoto = () => {
 };
 
 export const getUserPhotos = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/photos/${userId}`, {
+  const response = await fetch(`/api/photos/users/${userId}`, {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   })

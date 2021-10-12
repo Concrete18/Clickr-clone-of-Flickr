@@ -13,16 +13,16 @@ async function findPhotosByUserId(userId, limit=50) {
   );
 }
 
-async function findPhotosByPK(photoId) {
+async function findPhotosByPK(id) {
   return await Photo.findOne(
     {
-      where: { photoId },
+      where: { id },
     }
   );
 }
 
 async function createPhoto(photoData) {
-  const newPhoto = await photo.create(photoData);
+  const newPhoto = await Photo.create(photoData);
   return newPhoto;
 }
 

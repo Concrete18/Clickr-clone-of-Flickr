@@ -11,25 +11,25 @@ function Profile() {
   const sessionUser = useSelector(state => state.session.user);
   const photos = useSelector(state => state.photos);
 
-const [username, setUsername] = useState('Unknown')
-const [totalPhotos, setTotalPhotos] = useState('0 Photos')
-const [joinedDate, setJoinedDate] = useState('Joined 2021')
+  const [username, setUsername] = useState('Unknown')
+  const [totalPhotos, setTotalPhotos] = useState('0 Photos')
+  const [joinedDate, setJoinedDate] = useState('Joined 2021')
 
 
-const getUserData = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/photos/${userId}`, {
-    method: 'GET',
-    headers: {'Content-Type': 'application/json'}
-  })
-  if (response.ok) {
-    const user = await response.json();
-    return user
+  const getUserData = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/photos/${userId}`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    })
+    if (response.ok) {
+      const user = await response.json();
+      return user
+    }
   }
-}
 
-// const username = 'ErisconPhotography'
-// const totalPhotos = `800 Photos`
-// const joinedDate = 'Joined 2021'
+  // const username = 'ErisconPhotography'
+  // const totalPhotos = `800 Photos`
+  // const joinedDate = 'Joined 2021'
 
   useEffect(() => {
     dispatch(getUserPhotos(userId))
@@ -56,7 +56,7 @@ const getUserData = (userId) => async (dispatch) => {
       </div>
       <div className='gallery'>
         { photos[userId]?.map( photo => (
-          <a href={`/photo/${photo.id}`} key={photo.id}>
+          <a href={`/profile/photo/${photo.id}`} key={photo.id}>
             <img src={photo.imgUrl} alt={photo.title} className='gallery_image' />
           </a>
         ))}

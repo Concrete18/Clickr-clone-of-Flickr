@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
+import PhotoPage from "./components/PhotoPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,11 +30,16 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/profile/:userId">
+          <Route exact path="/profile/:userId">
             <Profile/>
           </Route>
-          <Route path="/profile/photo/:photoId">
-            <Profile/>
+          <Route exact path="/profile/photo/:photoId">
+            <PhotoPage/>
+          </Route>
+          <Route>
+            <div className='not_found'>
+              <h1>Page Not Found</h1>
+            </div>
           </Route>
         </Switch>
       )}
