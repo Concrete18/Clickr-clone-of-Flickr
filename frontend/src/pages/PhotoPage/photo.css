@@ -1,0 +1,31 @@
+.profile_page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_info {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 250px;
+    background-image: url("../../../src/images/banner (2).jpg");
+    background-position: 50% 40%;
+}
+
+.gallery {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 140px;
+    margin-right: 140px;
+}
+
+.gallery_image {
+    height: 400px;
+    object-fit: cover;
+    vertical-align: bottom;
+    padding: 3px;
+}
