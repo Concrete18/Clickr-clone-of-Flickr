@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+// import LoginFormPage from "./components/LoginFormPage";
+// import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
+// components
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import Profile from "./components/Profile";
-import PhotoPage from "./components/PhotoPage";
+// pages
+import PhotoPage from "./pages/PhotoPage";
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -22,14 +27,14 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <LoginFormPage />
+            <Home />
           </Route>
-          <Route path="/login">
+          {/* <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route exact path="/profile/:userId">
             <Profile/>
           </Route>
@@ -37,9 +42,7 @@ function App() {
             <PhotoPage/>
           </Route>
           <Route>
-            <div className='not_found'>
-              <h1>Page Not Found</h1>
-            </div>
+            <PageNotFound/>
           </Route>
         </Switch>
       )}
