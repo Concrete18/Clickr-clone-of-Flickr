@@ -1,9 +1,9 @@
 const { User } = require("./models");
 
-async function findUserByPK(userId) {
+async function findUserByPK(id) {
   return await User.findOne(
     {
-      where: { userId },
+      where: { id },
     }
   );
 }
