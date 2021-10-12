@@ -1,0 +1,27 @@
+.nav_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: rgba(21,21,23,.95);
+    text-decoration: none;
+}
+
+.nav_logo {
+    max-height: 38px;
+    margin: auto;
+}
+
+.nav_left {
+
+}
+
+.nav_right {
+
+}
+
+.nav_link {
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+}

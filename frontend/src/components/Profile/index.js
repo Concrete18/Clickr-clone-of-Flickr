@@ -15,17 +15,14 @@ function Profile() {
   // TODO wrong data
   // const username = sessionUser.username
   const username = 'ErisconPhotography'
-  const totalPhotos = `${photos[userId].length} Photos`
+  // const totalPhotos = `${photos[userId].length} Photos`
+  const totalPhotos = `800 Photos`
   // const joinedDate = `Joined ${sessionUser.createdAt}`
   const joinedDate = 'Joined 2021'
 
   useEffect(() => {
-    dispatch(getUserPhotos(userId))  
+    dispatch(getUserPhotos(userId))
   }, [userId])
-
-  // if (sessionUser) return (
-  //   <Redirect to="/" />
-  // );
 
   return (
     <div className='profile_page'>
@@ -41,7 +38,9 @@ function Profile() {
       </div>
       <div className='gallery'>
         { photos[userId]?.map( photo => (
-          <img src={photo.imgUrl} alt={photo.description} key={photo.id} className='gallery_image' />
+          <a href={`/photo/${photo.id}`} key={photo.id}>
+            <img src={photo.imgUrl} alt={photo.title} className='gallery_image' />
+          </a>
         ))}
       </div>
     </div>
