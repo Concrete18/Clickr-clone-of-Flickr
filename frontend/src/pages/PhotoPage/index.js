@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getPhoto } from '../../store/photos';
+import { getComments } from '../../store/comments';
 import './photo.css';
 
 import CommentForm from '../../components/CommentForm';
@@ -13,10 +14,14 @@ function PhotoPage() {
   const { photoId } = useParams();
   // let photo = useSelector(state => state.photos.photos);
   let photo = useSelector((state) => state.photos?.photos[photoId]);
+  let comments = useSelector((state) => state.comments?.[photoId]);
 
   useEffect(() => {
     dispatch(getPhoto(photoId))
+    dispatch(getComments(photoId))
   }, [photoId])
+
+  console.log(comments)
 
   return (
     <div className='photo_page'>
@@ -25,10 +30,10 @@ function PhotoPage() {
       </div>
       <div className='info'>
         <div className='photo_info'>
-          {/* <div className='info_box'>
+          <div className='info_box'>
             <h2>Creator</h2>
-            <p>{photo?.user.username}</p>
-          </div> */}
+            <p>{photo?.User.username}</p>
+          </div>
           <div className='info_box'>
             <h2>Title</h2>
             <p>{photo?.title}</p>
@@ -41,12 +46,14 @@ function PhotoPage() {
         {sessionUser && <CommentForm />}
         <div className='photo_comments'>
           <h2>Comments</h2>
-          {/* { comments[photoId]?.map( comment => (
-            <div className='single_comment'>
-              <h3>{comment.user.username}.</h3>
-              <p>{commentBody}</p>
-            </div>
-        ))} */}
+          { comments?.map( comment => {
+            return (
+              <div className='single_comment' key={comment.id}>
+                <h3>{comment.User.username}.</h3>
+                <p>{comment.commentBody}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>
