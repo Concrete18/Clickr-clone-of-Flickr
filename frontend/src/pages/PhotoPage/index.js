@@ -10,25 +10,13 @@ import CommentForm from '../../components/CommentForm';
 function PhotoPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  let photo = useSelector(state => state.photos.photos);
   const { photoId } = useParams();
-  
-  let UserComments;
-  if (sessionUser) {
-    UserComments = CommentForm;
-  }
+  // let photo = useSelector(state => state.photos.photos);
+  let photo = useSelector((state) => state.photos?.photos[photoId]);
 
   useEffect(() => {
-    dispatch(getPhoto(photoId)).then(() => console.log())
-    console.log(photo)
+    dispatch(getPhoto(photoId))
   }, [photoId])
-
-
-  // photo = {
-  //   imgUrl: 'https://live.staticflickr.com/1707/25393395045_ed34dbfe56_b.jpg',
-  //   title: 'Victoria',
-  //   description: 'I took this on the weekend'
-  // }
 
   return (
     <div className='photo_page'>
@@ -37,6 +25,10 @@ function PhotoPage() {
       </div>
       <div className='info'>
         <div className='photo_info'>
+          {/* <div className='info_box'>
+            <h2>Creator</h2>
+            <p>{photo?.user.username}</p>
+          </div> */}
           <div className='info_box'>
             <h2>Title</h2>
             <p>{photo?.title}</p>
@@ -46,10 +38,15 @@ function PhotoPage() {
             <p>{photo?.description}</p>
           </div>
         </div>
-        <UserComments />
+        {sessionUser && <CommentForm />}
         <div className='photo_comments'>
           <h2>Comments</h2>
-          All comments here
+          {/* { comments[photoId]?.map( comment => (
+            <div className='single_comment'>
+              <h3>{comment.user.username}.</h3>
+              <p>{commentBody}</p>
+            </div>
+        ))} */}
         </div>
       </div>
     </div>
