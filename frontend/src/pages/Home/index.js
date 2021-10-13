@@ -1,21 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 // import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getPhoto } from '../../store/photos';
+import { useSelector } from 'react-redux';
 import './home.css';
 
+import Signup from "../../components/SignupForm";
+import Login from "../../components/LoginForm";
+
 function Home() {
-  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   
-  if (sessionUser) {
-    // add comments to page
+  let sessionLinks;
+  if (!sessionUser) {
+    console.log(sessionUser)
+    sessionLinks = (
+      <div className='login_signUp'>
+        <div className='user_form sign_up' >
+          <h2>New User?</h2>
+          <Signup />
+        </div>
+        <div className='user_form sign_in'>
+          <Login />
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className='home_page'>
-      <h2>Home Page</h2>
+      {sessionLinks}
+      <div>
+        Show Profiles Here
+      </div>
     </div>
   );
 }
