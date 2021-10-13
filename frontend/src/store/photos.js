@@ -48,20 +48,22 @@ export const getPhoto = (photoId) => async (dispatch) => {
   }
 }
 
-// export const uploadPhoto = (photo) => async (dispatch) => {
-//   const { title, albumId, description } = photo;
-//   const response = await csrfFetch("/api/users", {
-//     method: "POST",
-//     body: JSON.stringify({
-//       title,
-//       albumId,
-//       description,
-//     }),
-//   });
-//   const data = await response.json();
-//   dispatch(setUser(data.user));
-//   return response;
-// };
+export const uploadPhoto = (photo) => async (dispatch) => {
+  const { title, albumId, description } = photo;
+  const response = await csrfFetch("/api/users", {
+    method: "POST",
+    body: JSON.stringify({
+      title,
+      userId,
+      albumId,
+      description,
+      imgUrl
+    }),
+  });
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
+};
 
 const initialState = { photos:{} };
 
