@@ -49,8 +49,8 @@ export const getPhoto = (photoId) => async (dispatch) => {
 }
 
 export const uploadPhoto = (photo) => async (dispatch) => {
-  const { title, albumId, description } = photo;
-  const response = await csrfFetch("/api/users", {
+  const { title, userId, albumId, description, imgUrl } = photo;
+  const response = await csrfFetch("/api/photos", {
     method: "POST",
     body: JSON.stringify({
       title,
@@ -61,7 +61,7 @@ export const uploadPhoto = (photo) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data.user));
+  dispatch(addPhoto(data.user));
   return response;
 };
 
