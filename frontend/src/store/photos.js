@@ -2,12 +2,21 @@ import { csrfFetch } from './csrf';
 
 const ADD_PHOTO = 'photos/AddPhoto';
 const REMOVE_PHOTO = 'photos/RemovePhoto';
+const ADD_SINGLE_PHOTO = 'photos/addSinglePhoto';
 
 const addPhoto = (photos, userId) => {
   return {
     type: ADD_PHOTO,
     payload: userId,
     photos
+  };
+};
+
+const addSinglePhoto = (photo, photoId) => {
+  return {
+    type: ADD_SINGLE_PHOTO,
+    payload: photoId,
+    photo
   };
 };
 
@@ -35,7 +44,8 @@ export const getPhoto = (photoId) => async (dispatch) => {
   })
   if (response.ok) {
     const photo = await response.json();
-    dispatch(addPhoto(photo, photoId));
+    console.log(photo)
+    dispatch(addSinglePhoto(photo, photoId));
   }
 }
 
@@ -66,6 +76,10 @@ const photosReducer = (state = initialState, action) => {
     case REMOVE_PHOTO:
       newState = Object.assign({}, state);
       newState[action.payload] = null;
+      return newState;
+    case ADD_SINGLE_PHOTO:
+      newState = Object.assign({}, state);
+      newState.photos[action.payload] = action.photo;
       return newState;
     default:
       return state;
