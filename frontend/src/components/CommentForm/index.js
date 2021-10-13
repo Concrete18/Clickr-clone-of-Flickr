@@ -11,21 +11,21 @@ function CommentForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(commentBody)
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
         Write Comment
-        <input
+        <textarea
           type="text"
-          value='{confirmPassword}'
           onChange={(e) => SetCommentBody(e.target.value)}
+          placeholder='Type Comment'
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button type="submit">Submit Comment</button>
     </form>
   );
 }
