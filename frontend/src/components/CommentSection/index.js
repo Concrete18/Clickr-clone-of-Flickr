@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
-import './CommentForm.css';
+import './CommentSection.css';
 
 
 CommentForm = (
@@ -20,8 +20,7 @@ CommentForm = (
   </form>
 )
 
-function CommentForm() {
-  const dispatch = useDispatch();
+function CommentSection() {
   
   const [commentBody, SetCommentBody] = useState("");
 
@@ -46,4 +45,4 @@ function CommentForm() {
   );
 }
 
-export default CommentForm;
+export default CommentSection;
