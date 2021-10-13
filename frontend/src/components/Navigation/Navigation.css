@@ -3,21 +3,21 @@
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    background-color: rgba(21,21,23,.95);
+    background-color: #161618;
     text-decoration: none;
 }
 
 .nav_logo {
-    max-height: 38px;
+    max-height: 32px;
     margin: auto;
 }
 
 .nav_left {
-
+    margin-left: 270px;
 }
 
 .nav_right {
-
+    margin-right: 400px;
 }
 
 .nav_link {
