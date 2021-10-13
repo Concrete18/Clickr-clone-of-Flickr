@@ -5,20 +5,30 @@ import { useParams } from 'react-router-dom';
 import { getPhoto } from '../../store/photos';
 import './photo.css';
 
+import commentForm from '../../components/CommentForm';
+
 function PhotoPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const photo = useSelector(state => state.photos);
+  let photo = useSelector(state => state.photos);
   const { photoId } = useParams();
   
+  let userComments;
   if (sessionUser) {
-    // add comments to page
+    userComments = commentForm
   }
 
   useEffect(() => {
     dispatch(getPhoto(photoId))
     console.log(photo)
   }, [photoId])
+
+
+  photo = {
+    imgUrl: 'https://live.staticflickr.com/1707/25393395045_ed34dbfe56_b.jpg',
+    title: 'Victoria',
+    description: 'I took this on the weekend'
+  }
 
   return (
     <div className='photo_page'>
@@ -30,9 +40,7 @@ function PhotoPage() {
           <p>{photo?.title}</p>
           <p>{photo?.description}</p>
         </div>
-        <div className='user_comment'>
-        
-        </div>
+        {userComments}
         <div className='photo_comments'>
         
         </div>

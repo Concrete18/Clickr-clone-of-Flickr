@@ -1,31 +1,11 @@
-.profile_page {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile_info {
+.photo_container {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 250px;
-    background-image: url("../../../src/images/banner (2).jpg");
-    background-position: 50% 40%;
-}
-
-.gallery {
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    margin-left: 140px;
-    margin-right: 140px;
+    background-color: #212124;
 }
 
-.gallery_image {
-    height: 400px;
-    object-fit: cover;
-    vertical-align: bottom;
-    padding: 3px;
+.single_photo {
+    margin-top: 55px;
+    margin-bottom: 55px;
 }
