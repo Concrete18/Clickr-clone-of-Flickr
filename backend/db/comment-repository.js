@@ -1,9 +1,10 @@
-const { Comment } = require("./models");
+const { Comment, User } = require("./models");
 
-async function findCommentsByPhotoId(photoId) {
+async function findCommentsByUserId(photoId) {
   return await Comment.findAll(
     {
-      where: { photoId }
+      where: { photoId },
+      include: User
     }
   );
 }
@@ -15,6 +16,7 @@ async function findComment(userId, photoId) {
         userId,
         photoId
        },
+       include: User
     }
   );
 }
@@ -40,7 +42,7 @@ async function deleteComment(CommentId) {
 
 module.exports = {
   findComment,
-  findCommentsByPhotoId,
+  findCommentsByUserId,
   createComment,
   updateComment,
   deleteComment

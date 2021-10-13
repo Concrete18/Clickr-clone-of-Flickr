@@ -1,4 +1,4 @@
-const { Photo } = require("./models");
+const { Photo, User } = require("./models");
 
 async function list() {
   return await Photo.findAll();
@@ -9,6 +9,7 @@ async function findPhotosByUserId(userId, limit=50) {
     {
       where: { userId },
       limit: limit,
+      include: User
     }
   );
 }
@@ -17,6 +18,7 @@ async function findPhotosByPK(id) {
   return await Photo.findOne(
     {
       where: { id },
+      include: User
     }
   );
 }

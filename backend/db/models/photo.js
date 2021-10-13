@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Photo.associate = function(models) {
     Photo.belongsTo(models.Album, {foreignKey:'albumId'})
+    Photo.belongsTo(models.User, {foreignKey:'userId'})
   };
   return Photo;
 };
