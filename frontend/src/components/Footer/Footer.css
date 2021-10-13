@@ -1,6 +1,12 @@
 .footer {
     height: 108px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: #212124;
+}
+
+.footer_text {
+    text-decoration: none;
+    color: white;
+    margin: auto;
 }
