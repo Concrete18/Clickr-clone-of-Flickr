@@ -44,7 +44,6 @@ export const getPhoto = (photoId) => async (dispatch) => {
   })
   if (response.ok) {
     const photo = await response.json();
-    console.log(photo)
     dispatch(addSinglePhoto(photo, photoId));
   }
 }
@@ -64,7 +63,7 @@ export const getPhoto = (photoId) => async (dispatch) => {
 //   return response;
 // };
 
-const initialState = { photos: null };
+const initialState = { photos:{} };
 
 const photosReducer = (state = initialState, action) => {
   let newState;
