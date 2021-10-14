@@ -19,7 +19,7 @@ function PhotoPage() {
   useEffect(() => {
     dispatch(getPhoto(photoId))
     dispatch(getComments(photoId))
-  }, [photoId])
+  }, [dispatch, photoId])
 
   return (
     <div className='photo_page'>
