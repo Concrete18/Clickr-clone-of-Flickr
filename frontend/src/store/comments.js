@@ -4,27 +4,24 @@ const ADD_COMMENT = 'comments/AddComment';
 const ADD_ONE_COMMENT = 'comments/AddOneComment';
 const REMOVE_COMMENT = 'comments/RemoveComment';
 
-const AddComment = (comments, userId) => {
+const AddComment = (comments) => {
   return {
     type: ADD_COMMENT,
-    payload: userId,
     comments
   };
 };
 
-const AddOneComment = (comment, userId) => {
+const AddOneComment = (comment) => {
   return {
     type: ADD_ONE_COMMENT,
-    payload: userId,
     comment
   };
 };
 
-const RemoveComment = (comment) => {
+const RemoveComment = (commentId) => {
   return {
     type: REMOVE_COMMENT,
-    // payload: userId,
-    comment
+    commentId
   };
 };
 
@@ -50,20 +47,19 @@ export const createComment = (data) => async (dispatch) => {
   });
   if (response.ok) {
     const comment = await response.json();
-    dispatch(AddComment(comment));
+    dispatch(AddOneComment(comment));
     return comment;
   }
 };
 
 export const updateComment = (data) => async (dispatch) => {
-  const response = await fetch(`/api/comments/update`, {
+  const response = await csrfFetch(`/api/comments/update`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   });
-
   if (response.ok) {
     const comment = await response.json();
     dispatch(AddOneComment(comment));
@@ -71,37 +67,32 @@ export const updateComment = (data) => async (dispatch) => {
   }
 };
 
-// export const deleteComment = (data) => async (dispatch) => {
-//   const response = await fetch(`/api/comments/update`, {
-//     method: 'put',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(data)
-//   });
+export const deleteComment = (commentId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/comments/comment/${commentId}`, {
+    method: 'delete'
+  });
+  if (response.ok) {
+    dispatch(RemoveComment(commentId));
+    return commentId;
+  }
+};
 
-//   if (response.ok) {
-//     const comment = await response.json();
-//     dispatch(AddOneComment(comment));
-//     return comment;
-//   }
-// };
-
-const initialState = { comments:{} };
+const initialState = {};
 
 const commentsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case ADD_COMMENT:
-      newState = Object.assign({}, state);
-      newState[action.payload] = action.comments;
+      newState = {}
+      action.comments.forEach((comment) => {newState[comment.id] = comment})
       return newState;
     case REMOVE_COMMENT:
       newState = Object.assign({}, state);
-      newState[action.payload] = null;
+      delete newState[action.commentId]
       return newState;
     case ADD_ONE_COMMENT:
-      // WIP
+      newState = Object.assign({}, state);
+      newState[action.comment.id] = action.comment
       return newState;
     default:
       return state;
