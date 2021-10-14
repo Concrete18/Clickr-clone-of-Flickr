@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 // import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import './photo.css';
+// stores
 import { getPhoto } from '../../store/photos';
 import { getComments } from '../../store/comments';
-import './photo.css';
-
-import CommentForm from '../../components/CommentForm';
+// components
+import CommentSection from '../../components/CommentSection';
 
 function PhotoPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  // const sessionUser = useSelector(state => state.session.user);
   const { photoId } = useParams();
   // let photo = useSelector(state => state.photos.photos);
   let photo = useSelector((state) => state.photos?.photos[photoId]);
@@ -20,8 +21,6 @@ function PhotoPage() {
     dispatch(getPhoto(photoId))
     dispatch(getComments(photoId))
   }, [photoId])
-
-  console.log(comments)
 
   return (
     <div className='photo_page'>
@@ -43,18 +42,7 @@ function PhotoPage() {
             <p>{photo?.description}</p>
           </div>
         </div>
-        {sessionUser && <CommentForm />}
-        <div className='photo_comments'>
-          <h2>Comments</h2>
-          { comments?.map( comment => {
-            return (
-              <div className='single_comment' key={comment.id}>
-                <h3>{comment.User.username}.</h3>
-                <p>{comment.commentBody}</p>
-              </div>
-            )
-          })}
-        </div>
+         <CommentSection comments={comments} photoId={photoId} />
       </div>
     </div>
   );
