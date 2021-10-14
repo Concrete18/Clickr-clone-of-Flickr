@@ -1,9 +1,8 @@
 import { csrfFetch } from './csrf';
 
 const ADD_USER_PHOTOS = 'photos/addUserPhotos';
-const ADD_SINGLE_PHOTO = 'photos/addSinglePhoto';
-const UPLOAD_PHOTO = 'photos/uploadPhoto'
-const REMOVE_PHOTO = 'photos/RemovePhoto';
+const ADD_SINGLE_PHOTO = 'photo/addSinglePhoto';
+const REMOVE_PHOTO = 'photos/removePhoto';
 
 const addUserPhotos = (photos) => {
   return {
@@ -18,13 +17,6 @@ const addSinglePhoto = (photo) => {
     photo
   };
 };
-
-// const uploadPhoto = (photo) => {
-//   return {
-//     type: UPLOAD_PHOTO,
-//     photo
-//   };
-// };
 
 const removePhoto = (photoId) => {
   return {
@@ -55,7 +47,7 @@ export const getPhoto = (photoId) => async (dispatch) => {
   }
 }
 
-export const uploadPhoto = (photo) => async (dispatch) => {
+export const uploadNewPhoto = (photo) => async (dispatch) => {
   const { title, userId, albumId, description, imgUrl } = photo;
   const response = await csrfFetch("/api/photos/new", {
     method: "POST",
@@ -71,7 +63,7 @@ export const uploadPhoto = (photo) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(uploadPhoto(data.user));
+  dispatch(addSinglePhoto(data.user));
   return response;
 };
 
@@ -93,15 +85,10 @@ const photosReducer = (state = initialState, action) => {
     case ADD_USER_PHOTOS:
       newState  = {};
       action.photos.forEach((photo) => {newState[photo.id] = photo});
-      // newState[action.payload] = action.photos;
       return newState;
     case ADD_SINGLE_PHOTO:
       newState = Object.assign({}, state);
-      newState.photo[action.payload] = action.photo;
-      return newState;
-    case UPLOAD_PHOTO:
-      newState = Object.assign({}, state);
-      newState[action.photo.id] = action.photo;
+      newState['photo'] = action.photo;
       return newState;
     case REMOVE_PHOTO:
       newState = Object.assign({}, state);

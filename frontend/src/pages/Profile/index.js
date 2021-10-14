@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 // import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getUserPhotos, uploadPhoto } from '../../store/photos';
+import { getUserPhotos, uploadNewPhoto } from '../../store/photos';
 import './profile.css';
 
 function Profile() {
   const dispatch = useDispatch();
   const { userId } = useParams();
   // const sessionUser = useSelector(state => state.session.user);
-  const photos = useSelector(state => state.photos[userId]);
+  const photos = useSelector(state => Object.values(state.photos));
 
   // const [username, setUsername] = useState('Unknown')
   // const [totalPhotos, setTotalPhotos] = useState('0 Photos')
@@ -27,7 +27,7 @@ function Profile() {
   }, [userId])
   
   function handleSubmit(e) {
-    dispatch(uploadPhoto())
+    dispatch(uploadNewPhoto())
   }
 
   return (

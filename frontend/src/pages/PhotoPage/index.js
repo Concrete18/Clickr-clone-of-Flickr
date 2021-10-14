@@ -14,7 +14,9 @@ function PhotoPage() {
   // const sessionUser = useSelector(state => state.session.user);
   const { photoId } = useParams();
   // let photo = useSelector(state => state.photos.photos);
-  let photo = useSelector((state) => state.photos?.photos[photoId]);
+  let photo = useSelector((state) => state.photos?.photo);
+
+  console.log(photo)
 
   useEffect(() => {
     dispatch(getPhoto(photoId))
