@@ -7,7 +7,7 @@ import './photo.css';
 import { getPhoto } from '../../store/photos';
 import { getComments } from '../../store/comments';
 // components
-import CommentSection from '../../components/CommentSection';
+import CommentsSection from '../../components/CommentsSection';
 
 function PhotoPage() {
   const dispatch = useDispatch();
@@ -15,7 +15,6 @@ function PhotoPage() {
   const { photoId } = useParams();
   // let photo = useSelector(state => state.photos.photos);
   let photo = useSelector((state) => state.photos?.photos[photoId]);
-  let comments = useSelector((state) => state.comments?.[photoId]);
 
   useEffect(() => {
     dispatch(getPhoto(photoId))
@@ -42,7 +41,7 @@ function PhotoPage() {
             <p>{photo?.description}</p>
           </div>
         </div>
-         <CommentSection comments={comments} photoId={photoId} />
+         <CommentsSection photoId={photoId} />
       </div>
     </div>
   );
