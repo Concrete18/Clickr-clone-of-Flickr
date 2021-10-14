@@ -23,7 +23,8 @@ async function findComment(userId, photoId) {
 
 async function createComment(CommentData) {
   const newComment = await Comment.create(CommentData);
-  return newComment;
+  const selectedComment = await Comment.findByPk(newComment.id, {include: User});
+  return selectedComment;
 }
 
 async function updateComment(commentId, CommentData) {
@@ -33,12 +34,8 @@ async function updateComment(commentId, CommentData) {
 }
 
 async function deleteComment(CommentId) {
-  const Comment = await Comment.findOne(
-    {
-      where: { CommentId },
-    }
-  );
-  Comment.destroy()
+  const selectedComment = await Comment.findByPk(commentId);
+  selectedComment.destroy()
 }
 
 module.exports = {
