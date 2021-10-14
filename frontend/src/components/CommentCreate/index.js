@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 // import { Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
-import './CommentForm.css';
+import './CommentCreate.css';
 
-function CommentForm(photoId) {
+function CommentCreate(photoId) {
   const sessionUser = useSelector(state => state.session.user);   
   // const dispatch = useDispatch();
   
@@ -33,4 +33,4 @@ function CommentForm(photoId) {
   );
 }
 
-export default CommentForm;
+export default CommentCreate;
