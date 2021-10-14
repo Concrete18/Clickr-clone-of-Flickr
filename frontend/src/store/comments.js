@@ -52,9 +52,9 @@ export const createComment = (data) => async (dispatch) => {
   }
 };
 
-export const updateComment = (data) => async (dispatch) => {
-  const response = await csrfFetch(`/api/comments/update`, {
-    method: 'put',
+export const updateComment = (data, commentId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/comments/update/${commentId}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -68,8 +68,8 @@ export const updateComment = (data) => async (dispatch) => {
 };
 
 export const deleteComment = (commentId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/comments/comment/${commentId}`, {
-    method: 'delete'
+  const response = await csrfFetch(`/api/comments/delete/${commentId}`, {
+    method: 'DELETE'
   });
   if (response.ok) {
     dispatch(RemoveComment(commentId));

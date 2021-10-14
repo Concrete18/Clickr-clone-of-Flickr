@@ -1,30 +1,39 @@
 import React, { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteComment, updateComment } from "../../store/comments";
 
 import './SingleComment.css';
 
 function SingleComment({comment}) {
   const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
   const [commentBody, SetCommentBody] = useState("");
+  const [commentId, SetCommentId] = useState(comment.id);
   const [showEditComment, setShowEditComment] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(commentBody)
     setShowEditComment(!showEditComment)
+		const data = commentBody
+		let updatedComment = await dispatch(updateComment(data, commentId))
+    if (updatedComment) return
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
     setShowEditComment(!showEditComment)
-    console.log(commentBody)
+    let deletedComment = await dispatch(deleteComment(commentId))
+    if (deletedComment) return
   };
 
 	return (
 		<div className='single_comment' key={comment.id}>
 			{sessionUser.id === 1 && !showEditComment && (
-				<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
-				)}
+				<>
+					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
+					<button onClick={handleDelete}>Delete Comment</button>
+				</>
+					)}
 			<h3>{comment.User.username}.</h3>
 			<p>{comment.commentBody}</p>
 			{sessionUser.id === 1 && showEditComment && (
@@ -35,12 +44,11 @@ function SingleComment({comment}) {
 						type="text"
 						onChange={(e) => SetCommentBody(e.target.value)}
 						placeholder='Type Comment'
-						value={comment.commentBody}
+						value={commentBody}
 						required
 					/>
 					</label>
 					<button type="submit">Update Comment</button>
-					<button onClick={handleDelete}>Delete Comment</button>
 				</form>
 			)}
 		</div>
