@@ -20,7 +20,7 @@ router.put('/update/:id', asyncHandler(async function(req, res) {
 	const commentId = req.params.id
 	const { commentData } = req.body
 	console.log('comment id', commentId)
-  console.log('comment data', CommentData)
+  console.log('comment data', commentData)
 	const comments = await CommentRepository.updateComment(commentId, commentData);
 	return res.json(comments);
 }));

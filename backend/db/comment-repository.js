@@ -21,22 +21,23 @@ async function findComment(userId, photoId) {
   );
 }
 
-async function createComment(CommentData) {
-  const newComment = await Comment.create(CommentData);
+async function createComment(commentData) {
+  const newComment = await Comment.create(commentData);
   const selectedComment = await Comment.findByPk(newComment.id, {include: User});
   return selectedComment;
 }
 
-async function updateComment(commentId, CommentData) {
+async function updateComment(commentId, commentData) {
   const selectedComment = await Comment.findByPk(commentId);
   console.log('comment id', commentId)
-  console.log('comment data', CommentData)
-  const newComment = await selectedComment.update(CommentData);
+  console.log('comment data', commentData)
+  await selectedComment.update({ commentBody: commentData });
+  const newComment = await Comment.findByPk(commentId, { include: {model: User } })
   return newComment;
 }
 
-async function deleteComment(CommentId) {
-  const selectedComment = await Comment.findByPk(CommentId);
+async function deleteComment(commentData) {
+  const selectedComment = await Comment.findByPk(commentData);
   selectedComment.destroy()
 }
 
