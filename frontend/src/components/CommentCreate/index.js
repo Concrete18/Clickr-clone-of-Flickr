@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { createComment } from "../../store/comments";
 // import { Redirect } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
+
 import './CommentCreate.css';
 
 function CommentCreate(photoId) {
   const sessionUser = useSelector(state => state.session.user);   
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   
   const [commentBody, SetCommentBody] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(sessionUser.id)
-    console.log(photoId.photoId)
-    console.log(commentBody)
+    // console.log(sessionUser.id)
+    // console.log(photoId.photoId)
+    // console.log(commentBody)
+    const data = {
+      userId:sessionUser.id,
+      photoId:photoId.photoId,
+      commentBody
+    }
+    let createdComment = await dispatch(createComment(data))
+    if (createdComment) return
   };
 
   return (

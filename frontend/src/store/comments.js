@@ -28,6 +28,22 @@ export const getComments = (photoId) => async (dispatch) => {
   }
 }
 
+export const createComment = (data) => async (dispatch) => {
+  console.log(data);
+  const response = await csrfFetch(`/api/comments/new`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  if (response.ok) {
+    const comment = await response.json();
+    dispatch(AddComment(comment));
+    return comment;
+  }
+};
+
 const initialState = { comments:{} };
 
 const commentsReducer = (state = initialState, action) => {
