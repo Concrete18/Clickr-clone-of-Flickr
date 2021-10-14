@@ -16,7 +16,7 @@ const AddOneComment = (comment) => {
     type: ADD_ONE_COMMENT,
     comment
   };
-};``
+};
 
 const RemoveComment = (commentId) => {
   return {
