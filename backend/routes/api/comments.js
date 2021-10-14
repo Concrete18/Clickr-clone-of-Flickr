@@ -10,7 +10,8 @@ router.get('/photo/:id', asyncHandler(async function(req, res) {
 	return res.json(comments);
 }));
 
-router.post('/comment/new', asyncHandler(async function(req, res) {
+router.post('/new', asyncHandler(async function(req, res) {
+	console.log('creating comment')
 	const comments = await CommentRepository.createComment(req.body);
 	return res.json(comments);
 }));

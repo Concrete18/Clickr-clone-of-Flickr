@@ -27,8 +27,8 @@ async function createComment(CommentData) {
 }
 
 async function updateComment(commentId, CommentData) {
-  const Comment = await Comment.findByPk(commentId);
-  const newComment = await Comment.update(CommentData);
+  const selectedComment = await Comment.findByPk(commentId);
+  const newComment = await selectedComment.update(CommentData);
   return newComment;
 }
 
