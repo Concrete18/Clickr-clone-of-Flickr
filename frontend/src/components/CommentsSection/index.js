@@ -12,8 +12,7 @@ function CommentsSection({photoId}) {
     <div className='photo_comments'>
       <CommentCreate photoId={photoId} />
       <h2>Comments</h2>
-      { comments?.map( comment => ( <SingleComment comment={comment}/> )
-      )}
+      { comments?.map( comment => ( <SingleComment comment={comment}/> ))}
     </div>
   );
 }

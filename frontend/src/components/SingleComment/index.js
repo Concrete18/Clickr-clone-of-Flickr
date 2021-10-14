@@ -29,18 +29,18 @@ function SingleComment({comment}) {
 			<p>{comment.commentBody}</p>
 			{sessionUser.id === 1 && showEditComment && (
 				<form onSubmit={handleSubmit}>
-				<label>
-				Edit Comment
-				<textarea
-					type="text"
-					onChange={(e) => SetCommentBody(e.target.value)}
-					placeholder='Type Comment'
-					value={comment.commentBody}
-					required
-				/>
-				</label>
-				<button type="submit">Update Comment</button>
-				<button onClick={handleDelete}>Delete Comment</button>
+					<label>
+					Edit Comment
+					<textarea
+						type="text"
+						onChange={(e) => SetCommentBody(e.target.value)}
+						placeholder='Type Comment'
+						value={comment.commentBody}
+						required
+					/>
+					</label>
+					<button type="submit">Update Comment</button>
+					<button onClick={handleDelete}>Delete Comment</button>
 				</form>
 			)}
 		</div>
