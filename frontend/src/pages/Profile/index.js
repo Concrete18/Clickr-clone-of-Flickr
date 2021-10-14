@@ -25,11 +25,6 @@ function Profile() {
     // setTotalPhotos(photos.length)
     // const joinedDate = `Joined ${sessionUser.createdAt}`
   }, [userId])
-
-  console.log(photos)
-  // console.log(username)
-  // console.log(totalPhotos)
-  // console.log(joinedDate)
   
   function handleSubmit(e) {
     dispatch(uploadPhoto())
