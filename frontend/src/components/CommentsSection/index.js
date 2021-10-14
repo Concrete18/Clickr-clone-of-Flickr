@@ -12,6 +12,7 @@ function CommentsSection({photoId}) {
     <div className='photo_comments'>
       <CommentCreate photoId={photoId} />
       <h2>Comments</h2>
+      {/* TODO add key to map */}
       { comments?.map( comment => ( <SingleComment comment={comment}/> ))}
     </div>
   );

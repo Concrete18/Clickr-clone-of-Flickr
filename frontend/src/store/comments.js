@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf';
 
 const ADD_COMMENT = 'comments/AddComment';
+const ADD_ONE_COMMENT = 'comments/AddOneComment';
 const REMOVE_COMMENT = 'comments/RemoveComment';
 
 const AddComment = (comments, userId) => {
@@ -11,11 +12,21 @@ const AddComment = (comments, userId) => {
   };
 };
 
-// const RemoveComment = () => {
-//   return {
-//     type: COMMENT,
-//   };
-// };
+const AddOneComment = (comment, userId) => {
+  return {
+    type: ADD_ONE_COMMENT,
+    payload: userId,
+    comment
+  };
+};
+
+const RemoveComment = (comment) => {
+  return {
+    type: REMOVE_COMMENT,
+    // payload: userId,
+    comment
+  };
+};
 
 export const getComments = (photoId) => async (dispatch) => {
   const response = await fetch(`/api/comments/photo/${photoId}`, {
@@ -44,6 +55,38 @@ export const createComment = (data) => async (dispatch) => {
   }
 };
 
+export const updateComment = (data) => async (dispatch) => {
+  const response = await fetch(`/api/comments/update`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (response.ok) {
+    const comment = await response.json();
+    dispatch(AddOneComment(comment));
+    return comment;
+  }
+};
+
+// export const deleteComment = (data) => async (dispatch) => {
+//   const response = await fetch(`/api/comments/update`, {
+//     method: 'put',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+//   });
+
+//   if (response.ok) {
+//     const comment = await response.json();
+//     dispatch(AddOneComment(comment));
+//     return comment;
+//   }
+// };
+
 const initialState = { comments:{} };
 
 const commentsReducer = (state = initialState, action) => {
@@ -56,6 +99,9 @@ const commentsReducer = (state = initialState, action) => {
     case REMOVE_COMMENT:
       newState = Object.assign({}, state);
       newState[action.payload] = null;
+      return newState;
+    case ADD_ONE_COMMENT:
+      // WIP
       return newState;
     default:
       return state;
