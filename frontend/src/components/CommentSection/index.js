@@ -1,47 +1,58 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-// import { Redirect } from "react-router-dom";
-// import * as sessionActions from "../../store/session";
+import { useSelector } from 'react-redux';
+
+import CommentForm from '../../components/CommentForm';
 import './CommentSection.css';
 
-
-CommentForm = (
-  <form onSubmit={handleSubmit}>
-    <label>
-      Write Comment
-      <textarea
-        type="text"
-        onChange={(e) => SetCommentBody(e.target.value)}
-        placeholder='Type Comment'
-        required
-      />
-    </label>
-    <button type="submit">Submit Comment</button>
-  </form>
-)
-
-function CommentSection() {
-  
+function CommentSection({comments, photoId}) {
+  const sessionUser = useSelector(state => state.session.user);
   const [commentBody, SetCommentBody] = useState("");
+  const [showEditComment, setShowEditComment] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(commentBody)
+    setShowEditComment(!showEditComment)
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    setShowEditComment(!showEditComment)
+    console.log(commentBody)
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Write Comment
-        <textarea
-          type="text"
-          onChange={(e) => SetCommentBody(e.target.value)}
-          placeholder='Type Comment'
-          required
-        />
-      </label>
-      <button type="submit">Submit Comment</button>
-    </form>
+    <div className='photo_comments'>
+      <CommentForm photoId={photoId} />
+      <h2>Comments</h2>
+      { comments?.map( comment => {
+        return (
+          <div className='single_comment' key={comment.id}>
+            {sessionUser.id === comment.userId && !showEditComment && (
+              <button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
+            )}
+            <h3>{comment.User.username}.</h3>
+            <p>{comment.commentBody}</p>
+            {sessionUser.id === comment.userId && showEditComment && (
+              <form onSubmit={handleSubmit}>
+                <label>
+                Edit Comment
+                <textarea
+                  type="text"
+                  onChange={(e) => SetCommentBody(e.target.value)}
+                  placeholder='Type Comment'
+                  value={comment.commentBody}
+                  required
+                />
+                </label>
+                <button type="submit">Update Comment</button>
+                <button onClick={handleDelete}>Delete Comment</button>
+              </form>
+            )}
+          </div>
+      )
+      })}
+    </div>
   );
 }
 
