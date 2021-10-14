@@ -1,0 +1,25 @@
+.photo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212124;
+}
+
+.single_photo {
+    margin-top: 55px;
+    margin-bottom: 55px;
+}
+
+.photo_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.photo_comments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

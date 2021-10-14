@@ -1,0 +1,27 @@
+.nav_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: #161618;
+    text-decoration: none;
+}
+
+.nav_logo {
+    max-height: 32px;
+    margin: auto;
+}
+
+.nav_left {
+    margin-left: 270px;
+}
+
+.nav_right {
+    margin-right: 400px;
+}
+
+.nav_link {
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+}

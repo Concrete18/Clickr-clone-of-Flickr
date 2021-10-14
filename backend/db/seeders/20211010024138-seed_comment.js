@@ -11,6 +11,12 @@ const comments = [
   'Great Shot!',
   'How did you take this?',
   'I love the contrast!',
+  'Love the angle!',
+  'The lighting is perfect!',
+  'What lens is this?',
+  'Where did you take this?',
+  'What is your camera set up?',
+  'I can\'t find your website for hiring you.'
 ]
 
 const fakeComments = [

@@ -1,28 +1,30 @@
-const { Photo } = require("./models");
+const { Photo, User } = require("./models");
 
 async function list() {
   return await Photo.findAll();
 }
 
-async function findPhotosByUserId(userId, limit=100) {
+async function findPhotosByUserId(userId, limit=50) {
   return await Photo.findAll(
     {
       where: { userId },
       limit: limit,
+      include: User
     }
   );
 }
 
-async function findPhotosByPK(photoId) {
+async function findPhotosByPK(id) {
   return await Photo.findOne(
     {
-      where: { photoId },
+      where: { id },
+      include: User
     }
   );
 }
 
 async function createPhoto(photoData) {
-  const newPhoto = await photo.create(photoData);
+  const newPhoto = await Photo.create(photoData);
   return newPhoto;
 }
 

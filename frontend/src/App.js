@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
+// components
 import Navigation from "./components/Navigation";
-import Profile from "./components/Profile";
+import Footer from "./components/Footer";
+// pages
+import PhotoPage from "./pages/PhotoPage";
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -20,22 +25,20 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <LoginFormPage />
+            <Home />
           </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/profile/:userId">
+          <Route exact path="/profile/:userId">
             <Profile/>
           </Route>
-          <Route path="/profile/photo/:photoId">
-            <Profile/>
+          <Route exact path="/profile/photo/:photoId">
+            <PhotoPage/>
+          </Route>
+          <Route>
+            <PageNotFound/>
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

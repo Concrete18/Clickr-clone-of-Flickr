@@ -1,0 +1,18 @@
+.home_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login_signUp {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user_form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
