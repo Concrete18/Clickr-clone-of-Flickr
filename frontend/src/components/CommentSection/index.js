@@ -28,12 +28,12 @@ function CommentSection({comments, photoId}) {
       { comments?.map( comment => {
         return (
           <div className='single_comment' key={comment.id}>
-            {sessionUser.id === comment.userId && !showEditComment && (
+            {sessionUser.id === 1 && !showEditComment && (
               <button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
             )}
             <h3>{comment.User.username}.</h3>
             <p>{comment.commentBody}</p>
-            {sessionUser.id === comment.userId && showEditComment && (
+            {sessionUser.id === 1 && showEditComment && (
               <form onSubmit={handleSubmit}>
                 <label>
                 Edit Comment
