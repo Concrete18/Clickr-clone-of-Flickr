@@ -22,7 +22,7 @@ router.post('/comment/:id', asyncHandler(async function(req, res) {
 	return res.json(comments);
 }));
 
-router.post('/comment/:id', asyncHandler(async function(req, res) {
+router.delete('/comment/:id', asyncHandler(async function(req, res) {
 	const commentId = req.params.id
 	const comments = await CommentRepository.deleteComment(commentId);
 	return res.json(comments);
