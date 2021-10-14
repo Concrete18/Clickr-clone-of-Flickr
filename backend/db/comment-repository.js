@@ -29,12 +29,14 @@ async function createComment(CommentData) {
 
 async function updateComment(commentId, CommentData) {
   const selectedComment = await Comment.findByPk(commentId);
+  console.log('comment id', commentId)
+  console.log('comment data', CommentData)
   const newComment = await selectedComment.update(CommentData);
   return newComment;
 }
 
 async function deleteComment(CommentId) {
-  const selectedComment = await Comment.findByPk(commentId);
+  const selectedComment = await Comment.findByPk(CommentId);
   selectedComment.destroy()
 }
 

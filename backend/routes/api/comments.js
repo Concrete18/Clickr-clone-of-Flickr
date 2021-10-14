@@ -16,13 +16,16 @@ router.post('/new', asyncHandler(async function(req, res) {
 	return res.json(comments);
 }));
 
-router.post('/comment/:id', asyncHandler(async function(req, res) {
+router.put('/update/:id', asyncHandler(async function(req, res) {
 	const commentId = req.params.id
-	const comments = await CommentRepository.updateComment(commentId, req.body);
+	const { commentData } = req.body
+	console.log('comment id', commentId)
+  console.log('comment data', CommentData)
+	const comments = await CommentRepository.updateComment(commentId, commentData);
 	return res.json(comments);
 }));
 
-router.delete('/comment/:id', asyncHandler(async function(req, res) {
+router.delete('/delete/:id', asyncHandler(async function(req, res) {
 	const commentId = req.params.id
 	const comments = await CommentRepository.deleteComment(commentId);
 	return res.json(comments);
