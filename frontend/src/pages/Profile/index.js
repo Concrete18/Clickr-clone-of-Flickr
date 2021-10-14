@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getUserPhotos, uploadPhoto } from '../../store/photos';
 import './profile.css';
 
@@ -51,9 +51,9 @@ function Profile() {
       <button onClick={() => handleSubmit}>Upload Photo</button>
       <div className='gallery'>
         { photos?.map( photo => (
-          <a href={`/profile/photo/${photo.id}`} key={photo.id}>
+          <Link to={`/profile/photo/${photo.id}`} key={photo.id} >
             <img src={photo.imgUrl} alt={photo.title} className='gallery_image' />
-          </a>
+          </Link>
         ))}
       </div>
     </div>
