@@ -34,8 +34,8 @@ function SingleComment({comment}) {
 					<button onClick={handleDelete}>Delete Comment</button>
 				</>
 					)}
-			<h3>{comment.User.username}.</h3>
-			<p>{comment.commentBody}</p>
+			<h3>{comment?.User?.username}</h3>
+      <p>{comment?.commentBody}</p>
 			{sessionUser.id === 1 && showEditComment && (
 				<form onSubmit={handleSubmit}>
 					<label>
