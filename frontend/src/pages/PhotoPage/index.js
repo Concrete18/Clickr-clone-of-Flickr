@@ -11,15 +11,21 @@ import CommentsSection from '../../components/CommentsSection';
 
 function PhotoPage() {
   const dispatch = useDispatch();
-  // const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
   const { photoId } = useParams();
-  // let photo = useSelector(state => state.photos.photos);
   let photo = useSelector((state) => state.photos?.photo);
 
   useEffect(() => {
     dispatch(getPhoto(photoId))
     dispatch(getComments(photoId))
   }, [dispatch, photoId])
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    // setShowEditComment(!showEditComment)
+    // let deletedComment = await dispatch(deleteComment(commentId))
+    // if (deletedComment) return
+  };
 
   return (
     <div className='photo_page'>
@@ -40,6 +46,8 @@ function PhotoPage() {
             <h2>Description</h2>
             <p>{photo?.description}</p>
           </div>
+          {sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete'>Delete Photo</button>}
+          
         </div>
          <CommentsSection photoId={photoId} />
       </div>
