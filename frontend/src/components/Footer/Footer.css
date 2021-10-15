@@ -1,8 +1,11 @@
 .footer {
     height: 108px;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     background-color: #212124;
+    /* bottom: 0;
+    position: relative; */
 }
 
 .footer_text {
