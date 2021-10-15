@@ -32,7 +32,7 @@ for (let i = 0; i <= seedPhotos.length-1; i++) {
 // other profiles seeder
 for (let i = 0; i <= 600; i++) {
   let newPhoto = {
-    userId: getRandomNum(1, 300),
+    userId: getRandomNum(1, 52),
     albumId: i,
     title: seedPhotos[getRandomNum(0, seedPhotos.length-1)].title,
     description: photoDescriptions[getRandomNum(0, photoDescriptions.length-1)],
