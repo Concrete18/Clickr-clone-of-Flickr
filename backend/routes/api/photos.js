@@ -20,7 +20,7 @@ router.get('/:id', asyncHandler(async function(req, res) {
   return res.json(photos);
 }));
 
-router.post('/', asyncHandler(async function(req, res) {
+router.post('/new', asyncHandler(async function(req, res) {
   const photos = await PhotoRepository.createPhoto(req.body);
   return res.json(photos);
 }));
