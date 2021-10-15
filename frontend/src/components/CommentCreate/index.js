@@ -12,9 +12,6 @@ function CommentCreate(photoId) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(sessionUser.id)
-    // console.log(photoId.photoId)
-    // console.log(commentBody)
     const data = {
       userId:sessionUser.id,
       photoId:photoId.photoId,

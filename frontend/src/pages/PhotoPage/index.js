@@ -16,8 +16,6 @@ function PhotoPage() {
   // let photo = useSelector(state => state.photos.photos);
   let photo = useSelector((state) => state.photos?.photo);
 
-  console.log(photo)
-
   useEffect(() => {
     dispatch(getPhoto(photoId))
     dispatch(getComments(photoId))

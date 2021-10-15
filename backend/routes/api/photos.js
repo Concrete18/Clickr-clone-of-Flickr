@@ -21,7 +21,6 @@ router.get('/:id', asyncHandler(async function(req, res) {
 }));
 
 router.post('/', asyncHandler(async function(req, res) {
-  console.log('YAY')
   const photos = await PhotoRepository.createPhoto(req.body);
   return res.json(photos);
 }));

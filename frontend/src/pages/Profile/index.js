@@ -17,8 +17,6 @@ function Profile() {
 
   useEffect(() => {
     dispatch(getUserPhotos(userId))
-
-    console.log(photos)
     // setUsername(photos.User.username)
     // setJoinedDate(photos.User.createdAt)
     // const totalPhotos = `${photos[userId].length} Photos`

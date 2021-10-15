@@ -11,7 +11,6 @@ function Home() {
   
   let sessionLinks;
   if (!sessionUser) {
-    console.log(sessionUser)
     sessionLinks = (
       <div className='login_signUp'>
         <div className='user_form sign_up' >

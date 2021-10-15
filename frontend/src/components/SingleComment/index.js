@@ -28,7 +28,7 @@ function SingleComment({comment}) {
 
 	return (
 		<div className='single_comment' key={comment.id}>
-			{sessionUser.id === 1 && !showEditComment && (
+			{sessionUser.id === comment.userId && !showEditComment && (
 				<>
 					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
 					<button onClick={handleDelete}>Delete Comment</button>
@@ -36,7 +36,7 @@ function SingleComment({comment}) {
 					)}
 			<h3>{comment?.User?.username}</h3>
       <p>{comment?.commentBody}</p>
-			{sessionUser.id === 1 && showEditComment && (
+			{sessionUser.id === comment.userId && showEditComment && (
 				<form onSubmit={handleSubmit}>
 					<label>
 					Edit Comment

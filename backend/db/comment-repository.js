@@ -29,8 +29,6 @@ async function createComment(commentData) {
 
 async function updateComment(commentId, commentData) {
   const selectedComment = await Comment.findByPk(commentId);
-  console.log('comment id', commentId)
-  console.log('comment data', commentData)
   await selectedComment.update({ commentBody: commentData });
   const newComment = await Comment.findByPk(commentId, { include: {model: User } })
   return newComment;
