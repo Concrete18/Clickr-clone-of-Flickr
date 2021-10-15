@@ -12,6 +12,10 @@ function CommentsSection({photoId}) {
     <div className='photo_comments'>
       <CommentCreate photoId={photoId} />
       <h2>Comments</h2>
+      {/* TODO show no comments message if non exist */}
+      {/* {comments === undefined (
+        <h3>No Comments</h3>
+      )} */}
       { comments?.map( comment => ( <SingleComment comment={comment} key={comment.id}/> ))}
     </div>
   );

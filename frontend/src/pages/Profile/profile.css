@@ -10,14 +10,14 @@
     justify-content: center;
     width: 100%;
     height: 250px;
-    background-image: url("../../../src/images/banner (2).jpg");
+    background-image: url("../../../src/images/banner3.jpg");
     background-position: 50% 40%;
 }
 
 .gallery {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     margin-top: 50px;
     margin-left: 140px;
     margin-right: 140px;
@@ -25,7 +25,9 @@
 
 .gallery_image {
     height: 400px;
-    object-fit: cover;
-    vertical-align: bottom;
+    width: 300px;
+    object-fit: scale-down;
+    object-position: 50% .5;
     padding: 3px;
+    width: 10 vw;
 }
