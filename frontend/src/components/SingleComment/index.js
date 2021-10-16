@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteComment, updateComment } from "../../store/comments";
 
@@ -26,9 +26,13 @@ function SingleComment({comment}) {
     if (deletedComment) return
   };
 
+	const handleCancel = async (e) => {
+    setShowEditComment(!showEditComment)
+  };
+
 	return (
 		<div className='single_comment' key={comment.id}>
-			{sessionUser.id === comment.userId && !showEditComment && (
+			{sessionUser && sessionUser.id === comment.userId && !showEditComment && (
 				<>
 					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
 					<button onClick={handleDelete}>Delete Comment</button>
@@ -36,7 +40,7 @@ function SingleComment({comment}) {
 					)}
 			<h3>{comment?.User?.username}</h3>
       <p>{comment?.commentBody}</p>
-			{sessionUser.id === comment.userId && showEditComment && (
+			{sessionUser && sessionUser.id === comment.userId && showEditComment && (
 				<form onSubmit={handleSubmit}>
 					<label>
 					Edit Comment
@@ -44,11 +48,12 @@ function SingleComment({comment}) {
 						type="text"
 						onChange={(e) => SetCommentBody(e.target.value)}
 						placeholder='Type Comment'
-						value={commentBody}
+						defaultValue={comment?.commentBody}
 						required
 					/>
 					</label>
 					<button type="submit">Update Comment</button>
+					<button type="cancel" onClick={handleCancel}>Cancel</button>
 				</form>
 			)}
 		</div>
