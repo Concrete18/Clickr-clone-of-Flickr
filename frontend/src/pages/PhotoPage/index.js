@@ -32,6 +32,9 @@ function PhotoPage() {
       <div className='photo_container'>
         {photo && <img src={photo?.imgUrl} alt={photo?.title} className='single_photo' />}
       </div>
+      <div className='center small_margin'>
+        {sessionUser && sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete'>Delete Photo</button>}
+      </div>
       <div className='lower_container'>
         <div className='photo_info_container'>
           <div className='photo_info'>
@@ -46,8 +49,7 @@ function PhotoPage() {
             <div className='info_box'>
               <p>{photo?.description}</p>
             </div>
-        </div>
-          {sessionUser && sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete'>Delete Photo</button>}
+          </div>
         </div>
          <CommentsSection photoId={photoId} />
       </div>

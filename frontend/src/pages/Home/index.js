@@ -45,7 +45,7 @@ function Home() {
       {sessionLinks}
 
       
-      <h2>Trending</h2>
+      <h2 className='trending_text'>Trending</h2>
       <div className='gallery'>
       {photos && photos?.map( photo => (
           <Link to={`/profile/photo/${photo?.id}`} key={photo?.id} >

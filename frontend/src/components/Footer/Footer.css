@@ -3,13 +3,16 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     background-color: #212124;
-    /* bottom: 0;
-    position: relative; */
+    margin-top: 2em;
+    margin: auto;
 }
 
 .footer_text {
     text-decoration: none;
     color: white;
     margin: auto;
+    width: 10em;
+    text-align: center;
 }

@@ -30,6 +30,13 @@
     padding: 3px;
     width: 10 vw;
 }
+
+.upload_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* TODO fix show upload photo alignment */
 .upload_button {
     margin: 10px;
@@ -39,6 +46,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 200px;
 }
 

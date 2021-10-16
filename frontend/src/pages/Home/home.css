@@ -11,6 +11,7 @@
     flex-direction: row;
     border: #161618;
     border-radius: 5px;
+    margin-bottom: 2em;
 }
 
 .user_auth {
@@ -26,4 +27,14 @@
 
 .single_auth_container {
     height: 300px;
+}
+
+
+form input {
+    margin-bottom: 0.5em;
+}
+
+form label {
+    float: left;
+    margin-bottom: 0.5em;
 }

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteComment, updateComment } from "../../store/comments";
 
 import './SingleComment.css';
@@ -35,17 +36,17 @@ function SingleComment({comment}) {
 			{sessionUser && sessionUser.id === comment.userId && !showEditComment && (
 				<>
 				<div className='update_delete_comment comment_buttons'>
-					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
-					<button onClick={handleDelete}>Delete Comment</button>
+					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit</button>
+					<button onClick={handleDelete}>Delete</button>
 				</div>
 				</>
 				)}
-			<h3>{comment?.User?.username}</h3>
+			<Link to={`/profile/${comment?.User?.id}`} className='username_link'>
+				<h3>{comment?.User?.username}</h3>
+			</Link>
       <p>{comment?.commentBody}</p>
 			{sessionUser && sessionUser.id === comment.userId && showEditComment && (
-				<form onSubmit={handleSubmit}>
-					<label>
-					Edit Comment
+				<form className='edit_comment_form' onSubmit={handleSubmit}>
 					<textarea
 						type="text"
 						onChange={(e) => SetCommentBody(e.target.value)}
@@ -53,9 +54,8 @@ function SingleComment({comment}) {
 						defaultValue={comment?.commentBody}
 						required
 					/>
-					</label>
 					<div className='submit_update_cancel_comment comment_buttons'>
-						<button type="submit">Update Comment</button>
+						<button type="submit">Update</button>
 						<button type="cancel" onClick={handleCancel}>Cancel</button>
 					</div>
 				</form>

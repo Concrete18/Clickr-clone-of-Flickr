@@ -56,7 +56,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    margin-bottom: 2em;
 }
 
 .all_comments {
@@ -67,17 +67,44 @@
     width: 600px;
 }
 
+.single_comment textarea {
+    width: 300px;
+    height: 60px;
+    margin: 10px;
+}
+
 .single_comment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
     margin: 10px;
     border: 1px solid black;
+    border-radius: 6px;
     width: 96%;
+}
+
+.edit_comment_form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 .comment_buttons {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    padding: 7px;
+    padding-top: 7px;
     margin: auto;
-    width: 100%;
+    width: 60%;
+}
+
+.upload_photo_inputs input {
+    margin-bottom: 0.5em;
+}
+
+.upload_photo_inputs label {
+    float: left;
+    margin-bottom: 0.5em;
 }

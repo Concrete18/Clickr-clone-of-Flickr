@@ -26,3 +26,13 @@ button {
 button:hover {
     background-color: #187efc;
   }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.small_margin {
+    margin: .5em;
+}
