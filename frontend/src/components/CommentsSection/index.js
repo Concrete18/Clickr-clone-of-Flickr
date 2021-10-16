@@ -14,7 +14,6 @@ function CommentsSection({photoId}) {
       {sessionUser && <CommentCreate photoId={photoId} /> }
       
       <h2>Comments</h2>
-      {/* TODO show no comments message if non exist */}
       {comments && <h3>No Comments</h3>}
       { comments?.map( comment => ( <SingleComment comment={comment} key={comment.id}/> ))}
     </div>
