@@ -22,16 +22,16 @@ function CommentCreate(photoId) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='create_comment_form' onSubmit={handleSubmit}>
       <label>
         Write Comment
-        <textarea
-          type="text"
-          onChange={(e) => SetCommentBody(e.target.value)}
-          placeholder='Type Comment'
-          required
-        />
       </label>
+      <textarea
+        type="text"
+        onChange={(e) => SetCommentBody(e.target.value)}
+        placeholder='Type Comment'
+        required
+      />
       <button type="submit">Submit Comment</button>
     </form>
   );
