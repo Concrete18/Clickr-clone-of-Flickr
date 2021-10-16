@@ -34,8 +34,10 @@ function SingleComment({comment}) {
 		<div className='single_comment' key={comment.id}>
 			{sessionUser && sessionUser.id === comment.userId && !showEditComment && (
 				<>
+				<div className='update_delete_comment comment_buttons'>
 					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
 					<button onClick={handleDelete}>Delete Comment</button>
+				</div>
 				</>
 				)}
 			<h3>{comment?.User?.username}</h3>
@@ -52,8 +54,10 @@ function SingleComment({comment}) {
 						required
 					/>
 					</label>
-					<button type="submit">Update Comment</button>
-					<button type="cancel" onClick={handleCancel}>Cancel</button>
+					<div className='submit_update_cancel_comment comment_buttons'>
+						<button type="submit">Update Comment</button>
+						<button type="cancel" onClick={handleCancel}>Cancel</button>
+					</div>
 				</form>
 			)}
 		</div>

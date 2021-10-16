@@ -10,14 +10,6 @@ const fakeUsers = [
     hashedPassword: bcrypt.hashSync('password'),
     createdAt: new Date(),
     updatedAt: new Date()
-  },
-  {
-    avatar: 'live.staticflickr.com/7659/buddyicons/39883074@N03_r.jpg',
-    email: 'michaelericson19@gmail.com',
-    username: 'EricsonPhotography',
-    hashedPassword: bcrypt.hashSync(faker.internet.password()),
-    createdAt: new Date(),
-    updatedAt: new Date()
   }
 ]
 

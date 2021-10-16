@@ -30,9 +30,9 @@ function UploadPhoto() {
 	};
 
 	useEffect(() => {
-		if (sessionUser.id == userId) setShowFormButton(true);
+		if (sessionUser && sessionUser.id == userId) setShowFormButton(true);
 		else setShowFormButton(false)
-	}, [dispatch, userId, sessionUser.id])
+	}, [dispatch, userId, sessionUser])
 
   return (
 		<div className='upload_form'>
