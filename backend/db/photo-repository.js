@@ -3,8 +3,8 @@ const { Photo, User } = require("./models");
 
 async function list(limit=50) {
   return await Photo.findAll({
-    order: sequelize.random(),
-    limit: limit
+    limit: limit,
+    order: sequelize.random()
     }
   );
 }
@@ -29,14 +29,22 @@ async function findPhotosByPK(id) {
 }
 
 async function createPhoto(photoData) {
-  const newPhoto = await Photo.create(photoData);
-  return newPhoto;
+  newPhoto = await Photo.create(photoData);
+  const newPhotoWithUser = await Photo.findOne(
+    {
+      where: { 
+        id:Number(newPhoto.id)
+      },
+      include: User
+    }
+  )
+  return newPhotoWithUser;
 }
 
 async function deletePhoto(photoId) {
   const photo = await Photo.findOne(
     {
-      where: { photoId },
+      where: { id:photoId },
     }
   );
   photo.destroy()
