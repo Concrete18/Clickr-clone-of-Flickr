@@ -37,20 +37,26 @@ function UploadPhoto() {
   return (
 		<div className='upload_form'>
 		{showFormButton && (
-			<button onClick={() => {setShowUploadForm(!showUploadForm)}}>Show Upload Photo</button>
+			<div className='show_photo_upload_button'>
+				<button onClick={() => {setShowUploadForm(!showUploadForm)}} className='upload_button'>Show Upload Photo</button>
+			</div>
 		)}
 		{showUploadForm && (
-		<form onSubmit={handleSubmit}>
-			<label>Title
-				<input type="text" onChange={(e) => setPhotoTitle(e.target.value)} placeholder='Type title' required />
-			</label>
-			<label>Description
-				<input type="text" onChange={(e) => setDescription(e.target.value)} placeholder='Type description' required />
-			</label>
-			<label>Image URL
-				<input type="text" onChange={(e) => setPhotoImageUrl(e.target.value)} placeholder='Type image url' required />
-			</label>
-			<button type="submit">Upload</button>
+		<form onSubmit={handleSubmit} className='upload_photo_form'>
+			<div className='upload_photo_inputs'>
+				<label>Title
+					<input type="text" onChange={(e) => setPhotoTitle(e.target.value)} placeholder='Type title' required />
+				</label>
+				<label>Description
+					<input type="text" onChange={(e) => setDescription(e.target.value)} placeholder='Type description' required />
+				</label>
+				<label>Image URL
+					<input type="text" onChange={(e) => setPhotoImageUrl(e.target.value)} placeholder='Type image url' required />
+				</label>
+			</div>
+			<div className='upload_photo_button'>
+				<button type="submit">Upload</button>
+			</div>
 		</form>
 		)}
 			</div>

@@ -25,3 +25,11 @@
     padding: 10px;
     color: white;
 }
+
+.text_only_button {
+    background-color: transparent;
+}
+
+.text_only_button:hover {
+    background-color: transparent;
+}

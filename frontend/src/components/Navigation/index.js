@@ -19,7 +19,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <div>
         <NavLink to={`/profile/${sessionUser.id}`} className='nav_link' >{sessionUser.username}</NavLink>
-        <button onClick={logout}>Log Out</button>
+        <button onClick={logout} className='text_only_button'>Log Out</button>
       </div>
     );
   } else {

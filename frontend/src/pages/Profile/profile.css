@@ -30,3 +30,31 @@
     padding: 3px;
     width: 10 vw;
 }
+/* TODO fix show upload photo alignment */
+.upload_button {
+    margin: 10px;
+}
+
+.show_photo_upload_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+.upload_photo_inputs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.upload_photo_button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 200px;
+}
