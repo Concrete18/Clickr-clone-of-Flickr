@@ -15,7 +15,7 @@ function UploadPhoto() {
 	const [photoTitle, setPhotoTitle] = useState('')
 	const [photoDescription, setDescription] = useState('')
 	const [photoImageUrl, setPhotoImageUrl] = useState('')
-	
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = {
@@ -28,11 +28,11 @@ function UploadPhoto() {
 		let createdPhoto = await dispatch(uploadNewPhoto(data))
 		if (createdPhoto) return
 	};
-	
+
 	useEffect(() => {
-		if (+sessionUser.id == +userId) setShowFormButton(true);
+		if (sessionUser.id == userId) setShowFormButton(true);
 		else setShowFormButton(false)
-  }, [dispatch, userId])
+	}, [dispatch, userId, sessionUser.id])
 
   return (
 		<div className='upload_form'>

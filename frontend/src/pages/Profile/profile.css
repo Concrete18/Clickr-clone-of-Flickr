@@ -27,7 +27,6 @@
     height: 400px;
     width: 300px;
     object-fit: scale-down;
-    object-position: 50% .5;
     padding: 3px;
     width: 10 vw;
 }

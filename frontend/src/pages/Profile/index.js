@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 // import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { getUserPhotos, uploadNewPhoto } from '../../store/photos';
+import { getUserPhotos } from '../../store/photos';
 import UploadPhoto from '../../components/UploadPhoto'
 import './profile.css';
 
@@ -24,7 +24,7 @@ function Profile() {
     // const totalPhotos = `${photos[userId].length} Photos`
     // setTotalPhotos(photos.length)
     // const joinedDate = `Joined ${sessionUser.createdAt}`
-  }, [userId])
+  }, [dispatch, userId])
 
   console.log(photos)
   

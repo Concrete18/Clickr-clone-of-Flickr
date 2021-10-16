@@ -37,7 +37,7 @@ function SingleComment({comment}) {
 					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
 					<button onClick={handleDelete}>Delete Comment</button>
 				</>
-					)}
+				)}
 			<h3>{comment?.User?.username}</h3>
       <p>{comment?.commentBody}</p>
 			{sessionUser && sessionUser.id === comment.userId && showEditComment && (

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-// import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import './photo.css';
 // stores
-import { getPhoto } from '../../store/photos';
+import { getPhoto, deletePhoto } from '../../store/photos';
 import { getComments } from '../../store/comments';
 // components
 import CommentsSection from '../../components/CommentsSection';
 
 function PhotoPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   const { photoId } = useParams();
   let photo = useSelector((state) => state.photos?.photo);
@@ -22,9 +22,9 @@ function PhotoPage() {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    // setShowEditComment(!showEditComment)
-    // let deletedComment = await dispatch(deleteComment(commentId))
-    // if (deletedComment) return
+    let deletedPhoto = await dispatch(deletePhoto(photoId))
+    history.push(`/profile/${sessionUser.id}`);
+    if (deletedPhoto) return
   };
 
   return (
@@ -46,8 +46,7 @@ function PhotoPage() {
             <h2>Description</h2>
             <p>{photo?.description}</p>
           </div>
-          {sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete'>Delete Photo</button>}
-          
+          {sessionUser && sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete'>Delete Photo</button>}
         </div>
          <CommentsSection photoId={photoId} />
       </div>
