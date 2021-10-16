@@ -6,6 +6,7 @@ import './home.css';
 import { getAllPhotos } from '../../store/photos';
 import Signup from "../../components/SignupForm";
 import Login from "../../components/LoginForm";
+import Demo from "../../components/DemoLogin";
 
 function Home() {
   const dispatch = useDispatch();
@@ -19,21 +20,31 @@ function Home() {
   let sessionLinks;
   if (!sessionUser) {
     sessionLinks = (
-      <div className='login_signUp'>
-        <div className='user_form sign_up' >
-          <h2>New User?</h2>
+      <div className='auth_container'>
+
+        <div className='user_auth sign_up' >
           <Signup />
         </div>
-        <div className='user_form sign_in'>
+
+        <div className='user_auth sign_in'>
           <Login />
         </div>
+
+        <div className='user_auth sign_up' >
+          <Demo />
+        </div>
+
       </div>
     );
   }
 
   return (
     <div className='home_page'>
+
+
       {sessionLinks}
+
+      
       <h2>Trending</h2>
       <div className='gallery'>
       {photos && photos?.map( photo => (
