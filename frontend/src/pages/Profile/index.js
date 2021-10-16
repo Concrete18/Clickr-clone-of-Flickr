@@ -18,6 +18,10 @@ function Profile() {
 
   useEffect(() => {
     dispatch(getUserPhotos(userId))
+    if (photos.length > 0) {
+      console.log(photos[0])
+
+    }
     // TODO add banner info
     // setUsername(photos.User.username)
     // setJoinedDate(photos.User.createdAt)
@@ -25,8 +29,6 @@ function Profile() {
     // setTotalPhotos(photos.length)
     // const joinedDate = `Joined ${sessionUser.createdAt}`
   }, [dispatch, userId])
-
-  console.log(photos)
   
   return (
     <div className='profile_page'>

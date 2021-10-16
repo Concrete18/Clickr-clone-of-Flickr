@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import './photo.css';
 // stores
 import { getPhoto, deletePhoto } from '../../store/photos';
@@ -32,20 +32,21 @@ function PhotoPage() {
       <div className='photo_container'>
         {photo && <img src={photo?.imgUrl} alt={photo?.title} className='single_photo' />}
       </div>
-      <div className='info'>
-        <div className='photo_info'>
-          <div className='info_box'>
-            <h2>Creator</h2>
-            <p>{photo?.User.username}</p>
-          </div>
-          <div className='info_box'>
-            <h2>Title</h2>
-            <p>{photo?.title}</p>
-          </div>
-          <div className='info_box'>
-            <h2>Description</h2>
-            <p>{photo?.description}</p>
-          </div>
+      <div className='lower_container'>
+        <div className='photo_info_container'>
+          <div className='photo_info'>
+            <div className='info_box'>
+              <Link to={`/profile/${photo?.User.id}`} key={photo?.id} className='username_link'>
+                <h2>{photo?.User.username}</h2>
+              </Link>
+            </div>
+            <div className='info_box'>
+              <h3>{photo?.title}</h3>
+            </div>
+            <div className='info_box'>
+              <p>{photo?.description}</p>
+            </div>
+        </div>
           {sessionUser && sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete'>Delete Photo</button>}
         </div>
          <CommentsSection photoId={photoId} />
