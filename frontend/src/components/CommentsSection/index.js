@@ -12,7 +12,6 @@ function CommentsSection({photoId}) {
   return (
     <div className='photo_comments'>
       {sessionUser && <CommentCreate photoId={photoId} /> }
-      
       <h2>Comments</h2>
       {comments && <h3>No Comments</h3>}
       { comments?.map( comment => ( <SingleComment comment={comment} key={comment.id}/> ))}
