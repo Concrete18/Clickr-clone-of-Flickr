@@ -1,53 +1,64 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
-import { getUserPhotos } from '../../store/photos';
+import { useParams, useHistory } from 'react-router-dom';
+
+// stores
+import { getUserPhotos, getPhoto } from '../../store/photos';
+import { getComments } from '../../store/comments';
+import { getPageOwner } from '../../store/owner'
+
+// components
 import UploadPhoto from '../../components/UploadPhoto'
+
 import './profile.css';
 
 function Profile() {
-  const dispatch = useDispatch();
-  const { userId } = useParams();
-  // const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
   const photos = useSelector(state => Object.values(state.photos));
+  const owner = useSelector(state => state.owner);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { userId } = useParams();
 
-  // const [username, setUsername] = useState('Unknown')
+  console.log()
+  const [username, setUsername] = useState('Unknown')
   // const [totalPhotos, setTotalPhotos] = useState('0 Photos')
   // const [joinedDate, setJoinedDate] = useState('Joined 2021')
 
   useEffect(() => {
     dispatch(getUserPhotos(userId))
-    // if (photos.length > 0) {
-    //   console.log(photos[0])
-
-    // }
+    const newOwner = dispatch(getPageOwner(userId))
     // TODO add banner info
-    // setUsername(photos.User.username)
+    console.log(newOwner)
+    // setUsername(newOwner.ownerInfo.username)
     // setJoinedDate(photos.User.createdAt)
     // const totalPhotos = `${photos[userId].length} Photos`
     // setTotalPhotos(photos.length)
     // const joinedDate = `Joined ${sessionUser.createdAt}`
-  }, [dispatch, userId])
-  
+  }, [dispatch])
+
   return (
     <div className='profile_page'>
 
-      <div className='profile_info'>
+      <div className='banner'>
         {/* <img src={photos.User.avatar} alt="" /> */}
         <div className='user_name'>
-          {/* {username} */}
-        </div>
+          {/* {owner.user.username} */}
+        </div> 
         <div className='user_name'>
           {/* <p className='total_photos'>{totalPhotos}</p>
           <p className='joined_date'>{joinedDate}</p> */}
         </div>
       </div>
-      <UploadPhoto />
+      {sessionUser && Number(userId) === sessionUser.id && <UploadPhoto />}
       <div className='gallery'>
         {photos && photos?.map( photo => (
-          <Link to={`/profile/photo/${photo?.id}`} key={photo?.id} >
-            <img src={photo?.imgUrl} alt={photo?.title} className='gallery_image' />
-          </Link>
+            <img src={photo?.imgUrl} alt={photo?.title} onClick={ async (e) => {
+              e.preventDefault();
+              await dispatch(getPhoto(photo?.id))
+              await dispatch(getComments(photo?.id))
+              history.push(`/profile/photo/${photo?.id}`);
+            }} className='gallery_image' />
         ))}
       </div>
     </div>

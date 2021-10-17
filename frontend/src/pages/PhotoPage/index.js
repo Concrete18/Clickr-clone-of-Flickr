@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory, Link } from 'react-router-dom';
-import './photo.css';
+import { useParams, useHistory } from 'react-router-dom';
+
 // stores
-import { getPhoto, deletePhoto } from '../../store/photos';
+import { getUserPhotos, getPhoto, deletePhoto } from '../../store/photos';
 import { getComments } from '../../store/comments';
+import { getPageOwner } from '../../store/owner'
+
 // components
 import CommentsSection from '../../components/CommentsSection';
+
+import './photo.css';
 
 function PhotoPage() {
   const dispatch = useDispatch();
@@ -27,21 +31,26 @@ function PhotoPage() {
     if (deletedPhoto) return
   };
 
+  const toProfile = async (e) => {
+    e.preventDefault();
+    await dispatch(getUserPhotos(photo?.User.id))
+    await dispatch(getPageOwner(photo?.User.id))
+    history.push(`/profile/${photo?.User.id}`);
+  }
+
   return (
     <div className='photo_page'>
       <div className='photo_container'>
         {photo && <img src={photo?.imgUrl} alt={photo?.title} className='single_photo' />}
       </div>
       <div className='center small_margin'>
-        {sessionUser && sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete'>Delete Photo</button>}
+        {sessionUser && sessionUser.id === photo?.User.id && <button onClick={handleDelete} className='delete button'>Delete Photo</button>}
       </div>
       <div className='lower_container'>
         <div className='photo_info_container'>
           <div className='photo_info'>
             <div className='info_box'>
-              <Link to={`/profile/${photo?.User.id}`} key={photo?.id} className='username_link'>
-                <h2>{photo?.User.username}</h2>
-              </Link>
+              <button className='username_link' onClick={toProfile}>{photo?.User.username}</button>
             </div>
             <div className='info_box'>
               <h3>{photo?.title}</h3>
