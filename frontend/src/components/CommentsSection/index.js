@@ -15,7 +15,7 @@ function CommentsSection({photoId}) {
       <h2>Comments</h2>
       {!(Object.values(comments).length) && <h3>No Comments</h3>}
       <div className='all_comments'>
-        {comments && comments?.map( comment => ( <SingleComment comment={comment} key={comment.id}/> ))}
+        {comments && comments?.map( comment => ( <SingleComment comment={comment} key={`comments${comment.id}`}/> ))}
       </div>
     </div>
   );

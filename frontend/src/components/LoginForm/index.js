@@ -23,7 +23,7 @@ function LoginFormPage() {
         <h2>Current User?</h2>
         <form onSubmit={handleSubmit}>
           <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            {errors.map((error, idx) => <li key={`loginErrors${idx}`}>{error}</li>)}
           </ul>
           <label>
             Username or Email

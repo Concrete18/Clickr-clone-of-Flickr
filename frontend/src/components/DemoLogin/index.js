@@ -16,7 +16,7 @@ function LoginFormPage() {
   return (
       <div className='demo_div single_auth_container'> 
         <h2>Log in as Demo User</h2>
-        <button className="demo_login" onClick={demoLogin}>Demo Login</button>
+        <button className="demo_login button" onClick={demoLogin}>Demo Login</button>
       </div>
   );
 }

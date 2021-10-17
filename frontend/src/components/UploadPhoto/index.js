@@ -27,18 +27,11 @@ function UploadPhoto() {
 		if (createdPhoto) return
 	};
 
-	useEffect(() => {
-		if (sessionUser && sessionUser.id === userId) setShowFormButton(true);
-		else setShowFormButton(false)
-	}, [dispatch, userId, sessionUser])
-
   return (
 		<div className='upload_form'>
-			{showFormButton && (
-				<div className='show_photo_upload_button'>
-					<button onClick={() => {setShowUploadForm(!showUploadForm)}} className='upload_button'>Show Upload Photo</button>
-				</div>
-			)}
+			<div className='show_photo_upload_button'>
+				<button className='button' onClick={() => {setShowUploadForm(!showUploadForm)}} className='upload_button button'>Show Upload Photo</button>
+			</div>
 			{showUploadForm && (
 			<form onSubmit={handleSubmit} className='upload_photo_form'>
 				<div className='upload_photo_inputs'>
@@ -53,7 +46,7 @@ function UploadPhoto() {
 					</label>
 				</div>
 				<div className='upload_photo_button'>
-					<button type="submit">Upload</button>
+					<button className='button' type="submit">Upload</button>
 				</div>
 			</form>
 			)}

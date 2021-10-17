@@ -32,7 +32,7 @@ function CommentCreate(photoId) {
         placeholder='Type Comment'
         required
       />
-      <button type="submit">Submit Comment</button>
+      <button className='button' type="submit">Submit Comment</button>
     </form>
   );
 }
