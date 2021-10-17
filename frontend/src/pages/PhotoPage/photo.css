@@ -96,15 +96,24 @@
     justify-content: space-around;
     flex-direction: row;
     padding-top: 7px;
-    margin: auto;
-    width: 60%;
+    margin-bottom: 1em;
 }
 
 .upload_photo_inputs input {
     margin-bottom: 0.5em;
+    margin-left: .5em;
 }
 
 .upload_photo_inputs label {
     float: left;
     margin-bottom: 0.5em;
+    margin-left: .5em;
+}
+
+.submit_update_cancel_comment {
+    width: 60%;
+}
+
+.update_delete_comment {
+    width: 30%;
 }

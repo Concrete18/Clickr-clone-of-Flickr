@@ -33,18 +33,18 @@ function SingleComment({comment}) {
 
 	return (
 		<div className='single_comment' key={comment.id}>
-			{sessionUser && sessionUser.id === comment.userId && !showEditComment && (
-				<>
-				<div className='update_delete_comment comment_buttons'>
-					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit</button>
-					<button onClick={handleDelete}>Delete</button>
-				</div>
-				</>
-				)}
 			<Link to={`/profile/${comment?.User?.id}`} className='username_link'>
 				<h3>{comment?.User?.username}</h3>
 			</Link>
-      <p>{comment?.commentBody}</p>
+      		<p>{comment?.commentBody}</p>
+			{sessionUser && sessionUser.id === comment.userId && !showEditComment && (
+			<>
+			<div className='update_delete_comment comment_buttons'>
+				<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit</button>
+				<button onClick={handleDelete}>Delete</button>
+			</div>
+			</>
+			)}
 			{sessionUser && sessionUser.id === comment.userId && showEditComment && (
 				<form className='edit_comment_form' onSubmit={handleSubmit}>
 					<textarea
