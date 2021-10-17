@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import * as sessionActions from '../../store/session';
 import { useSelector, useDispatch } from 'react-redux';
 import { uploadNewPhoto } from "../../store/photos";
 import { useParams } from 'react-router-dom';
-// import './home.css';
 
 function UploadPhoto() {
   const sessionUser = useSelector(state => state.session.user);
@@ -30,7 +28,7 @@ function UploadPhoto() {
 	};
 
 	useEffect(() => {
-		if (sessionUser && sessionUser.id == userId) setShowFormButton(true);
+		if (sessionUser && sessionUser.id === userId) setShowFormButton(true);
 		else setShowFormButton(false)
 	}, [dispatch, userId, sessionUser])
 

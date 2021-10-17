@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getUserPhotos } from '../../store/photos';
@@ -18,10 +17,10 @@ function Profile() {
 
   useEffect(() => {
     dispatch(getUserPhotos(userId))
-    if (photos.length > 0) {
-      console.log(photos[0])
+    // if (photos.length > 0) {
+    //   console.log(photos[0])
 
-    }
+    // }
     // TODO add banner info
     // setUsername(photos.User.username)
     // setJoinedDate(photos.User.createdAt)

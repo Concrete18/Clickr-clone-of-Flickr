@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
 
   const demoLogin = async () => {
     const username = 'Doug_DemoDome'
