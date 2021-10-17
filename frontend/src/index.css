@@ -11,7 +11,7 @@ body {
 }
 
 
-button {
+.button {
     font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
     background-color: #0063dc;
     color: white;
@@ -23,7 +23,7 @@ button {
     padding-left: 15px;
 }
 
-button:hover {
+.button:hover {
     background-color: #187efc;
   }
 
