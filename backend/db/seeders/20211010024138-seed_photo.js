@@ -20,13 +20,13 @@ const photoDescriptions = [
 const photos = []
 
 // profiles seeder
-for (let i = 0; i <= 600; i++) {
+for (let i = 0; i < seedPhotos.length; i++) {
   let newPhoto = {
     userId: getRandomNum(1, 51),
     albumId: i,
-    title: seedPhotos[getRandomNum(0, seedPhotos.length-1)].title,
+    title: seedPhotos[i].title,
     description: photoDescriptions[getRandomNum(0, photoDescriptions.length-1)],
-    imgUrl: seedPhotos[getRandomNum(0, seedPhotos.length)].imageUrl,
+    imgUrl: seedPhotos[i].imageUrl,
     createdAt: new Date(),
     updatedAt: new Date()
   }

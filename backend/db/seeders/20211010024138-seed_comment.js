@@ -1,5 +1,7 @@
 'use strict';
 
+const seedPhotos = require('./photos.json');
+
 function getRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min) + min)
 }
@@ -34,7 +36,7 @@ for (let i = 0; i <= 800; i++) {
   let newComment = {
     userId: getRandomNum(1, 51),
     // TODO update match total number of photos in database
-    photoId: getRandomNum(0, 530),
+    photoId: getRandomNum(0, seedPhotos.length),
     commentBody: comments[getRandomNum(0, comments.length-1)],
     createdAt: new Date(),
     updatedAt: new Date()
