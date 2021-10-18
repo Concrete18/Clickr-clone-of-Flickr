@@ -27,8 +27,6 @@ function Navigation({ isLoaded }){
     history.push(`/profile/${sessionUser.id}`);
   }
 
-  // TODO set up new links with dispatch
-
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
