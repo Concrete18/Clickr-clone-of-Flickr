@@ -29,5 +29,6 @@
 ---
 ### Getting Started
 * Start by using `cd` to get into `frontend` and `backend` directory.
+* Run npm install
 * Run `npm start` in each in order to start the frontend and backend servers.
 * The website will start up for you in your browser.
