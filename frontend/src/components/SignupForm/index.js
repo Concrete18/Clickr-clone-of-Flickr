@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -23,6 +22,8 @@ function SignupFormPage() {
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
+
+  // FIXME sign up form
 
   return (
     <div className='signup_div single_auth_container'>
