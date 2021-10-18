@@ -53,7 +53,7 @@ function Profile() {
       {sessionUser && Number(userId) === sessionUser.id && <UploadPhoto />}
       <div className='gallery'>
         {photos && photos?.map( photo => (
-            <img src={photo?.imgUrl} alt={photo?.title} onClick={ async (e) => {
+            <img src={photo?.imgUrl} alt={photo?.title} key={`profile${photo?.id}`} onClick={ async (e) => {
               e.preventDefault();
               await dispatch(getPhoto(photo?.id))
               await dispatch(getComments(photo?.id))
