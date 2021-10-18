@@ -47,7 +47,7 @@ function Home() {
       <h2 className='trending_text'>Trending</h2>
       <div className='gallery'>
       {photos && photos?.map( photo => (
-            <img src={photo?.imgUrl} alt={photo?.title} onClick={ async (e) => {
+            <img src={photo?.imgUrl} alt={photo?.title} key={`home${photo?.id}`} onClick={ async (e) => {
               e.preventDefault();
               console.log(photo?.id)
               await dispatch(getPhoto(photo?.id))
