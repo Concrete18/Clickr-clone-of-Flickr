@@ -12,9 +12,6 @@ function CommentCreate(photoId) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(sessionUser.id)
-    // console.log(photoId.photoId)
-    // console.log(commentBody)
     const data = {
       userId:sessionUser.id,
       photoId:photoId.photoId,
@@ -25,17 +22,17 @@ function CommentCreate(photoId) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='create_comment_form' onSubmit={handleSubmit}>
       <label>
         Write Comment
-        <textarea
-          type="text"
-          onChange={(e) => SetCommentBody(e.target.value)}
-          placeholder='Type Comment'
-          required
-        />
       </label>
-      <button type="submit">Submit Comment</button>
+      <textarea
+        type="text"
+        onChange={(e) => SetCommentBody(e.target.value)}
+        placeholder='Type Comment'
+        required
+      />
+      <button className='button' type="submit">Submit Comment</button>
     </form>
   );
 }

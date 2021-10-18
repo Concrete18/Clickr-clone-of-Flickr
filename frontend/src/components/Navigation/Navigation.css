@@ -21,7 +21,18 @@
 }
 
 .nav_link {
+    font-size: 1em;
     text-decoration: none;
-    padding: 10px;
     color: white;
+    padding-right: 1em;
+}
+
+.text_only_button {
+    font-size: 1em;
+    text-decoration: none;
+    padding-right: 1em;
+    color: white;
+    border: none;
+    background-color: transparent;
+    text-align: left;
 }

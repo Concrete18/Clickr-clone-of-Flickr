@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteComment, updateComment } from "../../store/comments";
 
-import './SingleComment.css';
+// stores
+import { deleteComment, updateComment } from "../../store/comments";
+import { getUserPhotos } from '../../store/photos';
+import { getPageOwner } from '../../store/owner'
+import { useHistory } from 'react-router-dom';
 
 function SingleComment({comment}) {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+	const history = useHistory();
   const [commentBody, SetCommentBody] = useState("");
   const [commentId, SetCommentId] = useState(comment.id);
   const [showEditComment, setShowEditComment] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowEditComment(!showEditComment)
+    setShowEditComment(false)
 		const data = commentBody
 		let updatedComment = await dispatch(updateComment(data, commentId))
     if (updatedComment) return
@@ -21,34 +25,47 @@ function SingleComment({comment}) {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    setShowEditComment(!showEditComment)
+    setShowEditComment(false)
     let deletedComment = await dispatch(deleteComment(commentId))
     if (deletedComment) return
   };
 
+	const handleCancel = async (e) => {
+    setShowEditComment(false)
+  };
+
+  const toProfile = async (e) => {
+    e.preventDefault();
+    await dispatch(getUserPhotos(comment?.User?.id))
+    await dispatch(getPageOwner(comment?.User?.id))
+    history.push(`/profile/${comment?.User?.id}`);
+  }
+
 	return (
-		<div className='single_comment' key={comment.id}>
-			{sessionUser.id === 1 && !showEditComment && (
-				<>
-					<button onClick={() => {setShowEditComment(!showEditComment)}}>Edit Comment</button>
-					<button onClick={handleDelete}>Delete Comment</button>
-				</>
-					)}
-			<h3>{comment?.User?.username}</h3>
-      <p>{comment?.commentBody}</p>
-			{sessionUser.id === 1 && showEditComment && (
-				<form onSubmit={handleSubmit}>
-					<label>
-					Edit Comment
+		<div className='single_comment' key={`singleComment${comment.id}`}>
+			<button className='username_link comment_username' onClick={toProfile}>{comment?.User?.username}</button>
+			<p>{comment?.commentBody}</p>
+			{sessionUser && sessionUser.id === comment.userId && !showEditComment && (
+			<>
+			<div className='update_delete_comment comment_buttons'>
+				<button className='button' onClick={() => {setShowEditComment(true)}}>Edit</button>
+				<button className='button' onClick={handleDelete}>Delete</button>
+			</div>
+			</>
+			)}
+			{sessionUser && sessionUser.id === comment.userId && showEditComment && (
+				<form className='edit_comment_form' onSubmit={handleSubmit}>
 					<textarea
 						type="text"
 						onChange={(e) => SetCommentBody(e.target.value)}
 						placeholder='Type Comment'
-						value={commentBody}
+						defaultValue={comment?.commentBody}
 						required
 					/>
-					</label>
-					<button type="submit">Update Comment</button>
+					<div className='submit_update_cancel_comment comment_buttons'>
+						<button className='button' type="submit">Update</button>
+						<button className='button' type="cancel" onClick={handleCancel}>Cancel</button>
+					</div>
 				</form>
 			)}
 		</div>

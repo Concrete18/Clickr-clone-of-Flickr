@@ -5,14 +5,30 @@
     flex-direction: column;
 }
 
-.login_signUp {
+.auth_container {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
+    border: #161618;
+    border-radius: 5px;
+    margin-bottom: 2em;
+    padding: 10px;
 }
 
-.user_form {
+.user_auth {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 150px;
+}
+
+form input {
+    margin-bottom: 0.5em;
+}
+
+form label {
+    float: left;
+    margin-bottom: 0.5em;
 }
