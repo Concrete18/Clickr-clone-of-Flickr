@@ -25,6 +25,17 @@ const removePhoto = (photoId) => {
   };
 };
 
+export const getAllPhotos = () => async (dispatch) => {
+  const response = await fetch(`/api/photos/`, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'}
+  })
+  if (response.ok) {
+    const photos = await response.json();
+    dispatch(addUserPhotos(photos));
+  }
+}
+
 export const getUserPhotos = (userId) => async (dispatch) => {
   const response = await fetch(`/api/photos/users/${userId}`, {
     method: 'GET',
@@ -63,8 +74,8 @@ export const uploadNewPhoto = (photo) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(addSinglePhoto(data.user));
-  return response;
+  dispatch(addSinglePhoto(data));
+  return data;
 };
 
 export const deletePhoto = (photoId) => async (dispatch) => {

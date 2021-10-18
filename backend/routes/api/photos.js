@@ -20,10 +20,15 @@ router.get('/:id', asyncHandler(async function(req, res) {
   return res.json(photos);
 }));
 
-router.post('/', asyncHandler(async function(req, res) {
-  console.log('YAY')
+router.post('/new', asyncHandler(async function(req, res) {
   const photos = await PhotoRepository.createPhoto(req.body);
   return res.json(photos);
+}));
+
+router.delete('/delete/:id', asyncHandler(async function(req, res) {
+	const photoId = req.params.id
+	const photos = await PhotoRepository.deletePhoto(photoId);
+	return res.json(photos);
 }));
 
 module.exports = router;

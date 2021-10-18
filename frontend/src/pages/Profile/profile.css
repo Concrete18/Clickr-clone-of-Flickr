@@ -5,19 +5,19 @@
     align-items: center;
 }
 
-.profile_info {
+.banner {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 250px;
-    background-image: url("../../../src/images/banner (2).jpg");
+    background-image: url("../../../src/images/banner3.jpg");
     background-position: 50% 40%;
 }
 
 .gallery {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     margin-top: 50px;
     margin-left: 140px;
     margin-right: 140px;
@@ -25,7 +25,44 @@
 
 .gallery_image {
     height: 400px;
-    object-fit: cover;
-    vertical-align: bottom;
+    width: 300px;
+    object-fit: scale-down;
     padding: 3px;
+    width: 10 vw;
+}
+
+.upload_form {
+    /* display: flex; */
+    flex-direction: column;
+    /* justify-content: center; */
+    margin: auto;
+}
+
+.upload_button {
+    margin: 10px;
+}
+
+.show_photo_upload_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 282.85px;
+}
+
+.upload_photo_inputs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.upload_photo_button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 200px;
 }
