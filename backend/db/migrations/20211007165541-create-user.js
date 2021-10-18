@@ -10,7 +10,7 @@ module.exports = {
       },
       avatar: {
         type: Sequelize.STRING(300),
-        allowNull: false,
+        allowNull: true,
       },
       username: {
         type: Sequelize.STRING(30),
