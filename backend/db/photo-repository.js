@@ -1,7 +1,7 @@
 const { sequelize } = require('../db/models');
 const { Photo, User } = require("./models");
 
-async function list(limit=50) {
+async function list(limit=21) {
   return await Photo.findAll({
     limit: limit,
     order: sequelize.random()
