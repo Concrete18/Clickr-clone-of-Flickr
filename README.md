@@ -1,5 +1,8 @@
 # [clickr](https://click-r.herokuapp.com/)
 >The single click of a camera can capture the most beautiful moments in a still image. There are volumes of information that can be found in a single photo unlike a single page of a book.
+
+The 8_days branch shows the version finished after 8 days of work. Other branches may have changes after that period.
+
 ---
 ### Fullstack used:
 * CSS & HTML (front-end)
