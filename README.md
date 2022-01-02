@@ -1,5 +1,8 @@
 # [clickr](https://click-r.herokuapp.com/)
 >The single click of a camera can capture the most beautiful moments in a still image. There are volumes of information that can be found in a single photo unlike a single page of a book.
+
+The 8_days branch shows the version finished after 8 days of work. Other branches may have changes after that period.
+
 ---
 ### Fullstack used:
 * CSS & HTML (front-end)
@@ -29,5 +32,6 @@
 ---
 ### Getting Started
 * Start by using `cd` to get into `frontend` and `backend` directory.
+* Run npm install
 * Run `npm start` in each in order to start the frontend and backend servers.
 * The website will start up for you in your browser.
