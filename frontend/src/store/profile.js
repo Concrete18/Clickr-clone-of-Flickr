@@ -20,15 +20,14 @@ const remove = (profileId) => ({
 });
 
 export const getProfile = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/user/${userId}`, {
+  const response = await fetch(`/api/profiles/user/${userId}`, {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
   })
   if (response.ok) {
     const profile = await response.json();
-    
     dispatch(load(profile));
-    return profiles
+    return profile
   }
 }
 
