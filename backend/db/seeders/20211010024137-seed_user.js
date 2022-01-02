@@ -1,6 +1,16 @@
 'use strict';
 const faker = require('faker');
 const bcrypt = require('bcryptjs');
+const seedAvatars = require('./avatars.json');
+
+function* avatarGenerator() {
+  let i = 0
+  while (true) {
+    yield seedAvatars[i]
+    if (i > seedAvatars.length-2) i = 0;
+    else i++;
+  }
+}
 
 const fakeUsers = [
   {
@@ -13,9 +23,10 @@ const fakeUsers = [
   }
 ]
 
+const gen = avatarGenerator()
 for (let i = 0; i <= 50; i++) {
   let newUser = {
-    avatar:faker.internet.avatar(),
+    avatar:gen.next().value,
     username: faker.internet.userName(),
     email:faker.internet.email(),
     hashedPassword:bcrypt.hashSync(`sadPassword&${i}`, 10),
