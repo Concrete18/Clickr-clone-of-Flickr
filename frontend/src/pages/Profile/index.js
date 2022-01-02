@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 // stores
 import { getUserPhotos, getPhoto } from '../../store/photos';
 import { getComments } from '../../store/comments';
-import { getPageOwner } from '../../store/owner'
+import { getPageOwner } from '../../store/profile'
 
 // components
 import UploadPhoto from '../../components/UploadPhoto'
@@ -20,22 +20,20 @@ function Profile() {
   const history = useHistory();
   const { userId } = useParams();
 
-  console.log()
-  const [username, setUsername] = useState('Unknown')
+  // const [username, setUsername] = useState('Unknown')
   // const [totalPhotos, setTotalPhotos] = useState('0 Photos')
   // const [joinedDate, setJoinedDate] = useState('Joined 2021')
 
   useEffect(() => {
     dispatch(getUserPhotos(userId))
-    const newOwner = dispatch(getPageOwner(userId))
-    // TODO add banner info
-    console.log(newOwner)
+    dispatch(getPageOwner(userId))
+    console.log(owner)
     // setUsername(newOwner.ownerInfo.username)
     // setJoinedDate(photos.User.createdAt)
     // const totalPhotos = `${photos[userId].length} Photos`
     // setTotalPhotos(photos.length)
     // const joinedDate = `Joined ${sessionUser.createdAt}`
-  }, [dispatch])
+  }, [dispatch, userId])
 
   return (
     <div className='profile_page'>
