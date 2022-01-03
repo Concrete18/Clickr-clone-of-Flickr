@@ -18,6 +18,7 @@ const fakeUsers = [
     email: 'DougD@demo.dome',
     username: 'Doug_DemoDome',
     hashedPassword: bcrypt.hashSync('password'),
+    // TODO change fake dates to be random
     createdAt: new Date(),
     updatedAt: new Date()
   }
