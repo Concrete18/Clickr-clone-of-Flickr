@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 // stores
 import { getUserPhotos, getPhoto, deletePhoto } from '../../store/photos';
 import { getComments } from '../../store/comments';
-import { getPageOwner } from '../../store/owner'
+import { getProfile } from '../../store/profile'
 
 // components
 import CommentsSection from '../../components/CommentsSection';
@@ -34,7 +34,7 @@ function PhotoPage() {
   const toProfile = async (e) => {
     e.preventDefault();
     await dispatch(getUserPhotos(photo?.User.id))
-    await dispatch(getPageOwner(photo?.User.id))
+    await dispatch(getProfile(photo?.User.id))
     history.push(`/profile/${photo?.User.id}`);
   }
 

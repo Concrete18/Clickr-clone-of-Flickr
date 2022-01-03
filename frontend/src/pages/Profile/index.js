@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
 // stores
 import { getUserPhotos, getPhoto } from '../../store/photos';
 import { getComments } from '../../store/comments';
-import { getPageOwner } from '../../store/profile'
+import { getProfile } from '../../store/profile'
 
 // components
 import UploadPhoto from '../../components/UploadPhoto'
@@ -15,38 +15,26 @@ import './profile.css';
 function Profile() {
   const sessionUser = useSelector(state => state.session.user);
   const photos = useSelector(state => Object.values(state.photos));
-  const owner = useSelector(state => state.owner);
+  const profile = useSelector(state => Object.values(state.profile)[0]);
   const dispatch = useDispatch();
   const history = useHistory();
   const { userId } = useParams();
 
-  // const [username, setUsername] = useState('Unknown')
-  // const [totalPhotos, setTotalPhotos] = useState('0 Photos')
-  // const [joinedDate, setJoinedDate] = useState('Joined 2021')
-
   useEffect(() => {
     dispatch(getUserPhotos(userId))
-    dispatch(getPageOwner(userId))
-    console.log(owner)
-    // setUsername(newOwner.ownerInfo.username)
-    // setJoinedDate(photos.User.createdAt)
-    // const totalPhotos = `${photos[userId].length} Photos`
-    // setTotalPhotos(photos.length)
-    // const joinedDate = `Joined ${sessionUser.createdAt}`
+    dispatch(getProfile(userId))
   }, [dispatch, userId])
+
+  const dateObj = new Date(profile?.createdAt);
+  const year = dateObj.getUTCFullYear();
 
   return (
     <div className='profile_page'>
-
       <div className='banner'>
-        {/* <img src={photos.User.avatar} alt="" /> */}
-        <div className='user_name'>
-          {/* {owner.user.username} */}
-        </div> 
-        <div className='user_name'>
-          {/* <p className='total_photos'>{totalPhotos}</p>
-          <p className='joined_date'>{joinedDate}</p> */}
-        </div>
+        <img className='profile_avatar' src={profile?.avatar} alt="" />
+        <div className='user_name'>{profile?.username}</div> 
+        <div className='total_photos'>{photos?.length} Photos</div>
+        <div className='joined_date'>Joined {year}</div>
       </div>
       {sessionUser && Number(userId) === sessionUser.id && <UploadPhoto />}
       <div className='gallery'>

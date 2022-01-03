@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { uploadNewPhoto } from "../../store/photos";
 import { useParams } from 'react-router-dom';
 
 function UploadPhoto() {
-  const sessionUser = useSelector(state => state.session.user);
 	const { userId } = useParams();
 	const dispatch = useDispatch();
 
 	const [showUploadForm, setShowUploadForm] = useState(false);
-	const [showFormButton, setShowFormButton] = useState(false);
 	const [photoTitle, setPhotoTitle] = useState('')
 	const [photoDescription, setDescription] = useState('')
 	const [photoImageUrl, setPhotoImageUrl] = useState('')
@@ -30,7 +28,7 @@ function UploadPhoto() {
   return (
 		<div className='upload_form'>
 			<div className='show_photo_upload_button'>
-				<button className='button' onClick={() => {setShowUploadForm(!showUploadForm)}} className='upload_button button'>Show Upload Photo</button>
+				<button className='upload_button button' onClick={() => {setShowUploadForm(!showUploadForm)}} >Show Upload Photo</button>
 			</div>
 			{showUploadForm && (
 			<form onSubmit={handleSubmit} className='upload_photo_form'>

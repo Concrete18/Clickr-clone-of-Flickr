@@ -14,10 +14,10 @@ const add = (profile) => ({
   profile,
 });
 
-const remove = (profileId) => ({
-  type: REMOVE,
-  profileId,
-});
+// const remove = (profileId) => ({
+//   type: REMOVE,
+//   profileId,
+// });
 
 export const getProfile = (userId) => async (dispatch) => {
   const response = await fetch(`/api/profiles/user/${userId}`, {

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // stores
 import { getUserPhotos } from '../../store/photos';
 import * as sessionActions from '../../store/session';
-import { getPageOwner } from '../../store/owner'
+import { getProfile } from '../../store/profile'
 
 import logo from '../../images/logo.png'
 import './Navigation.css';
@@ -23,7 +23,7 @@ function Navigation({ isLoaded }){
   const toProfile = async (e) => {
     e.preventDefault();
     await dispatch(getUserPhotos(sessionUser.id))
-    await dispatch(getPageOwner(sessionUser.id))
+    await dispatch(getProfile(sessionUser.id))
     history.push(`/profile/${sessionUser.id}`);
   }
 

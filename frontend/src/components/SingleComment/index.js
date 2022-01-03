@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // stores
 import { deleteComment, updateComment } from "../../store/comments";
 import { getUserPhotos } from '../../store/photos';
-import { getPageOwner } from '../../store/owner'
+import { getProfile } from '../../store/profile'
 import { useHistory } from 'react-router-dom';
 
 function SingleComment({comment}) {
@@ -12,21 +12,20 @@ function SingleComment({comment}) {
   const dispatch = useDispatch();
 	const history = useHistory();
   const [commentBody, SetCommentBody] = useState("");
-  const [commentId, SetCommentId] = useState(comment.id);
   const [showEditComment, setShowEditComment] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setShowEditComment(false)
 		const data = commentBody
-		let updatedComment = await dispatch(updateComment(data, commentId))
+		let updatedComment = await dispatch(updateComment(data, comment.id))
     if (updatedComment) return
   };
 
   const handleDelete = async (e) => {
     e.preventDefault();
     setShowEditComment(false)
-    let deletedComment = await dispatch(deleteComment(commentId))
+    let deletedComment = await dispatch(deleteComment(comment.id))
     if (deletedComment) return
   };
 
@@ -37,7 +36,7 @@ function SingleComment({comment}) {
   const toProfile = async (e) => {
     e.preventDefault();
     await dispatch(getUserPhotos(comment?.User?.id))
-    await dispatch(getPageOwner(comment?.User?.id))
+    await dispatch(getProfile(comment?.User?.id))
     history.push(`/profile/${comment?.User?.id}`);
   }
 
