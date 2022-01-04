@@ -31,10 +31,18 @@ function Profile() {
   return (
     <div className='profile_page'>
       <div className='banner'>
-        <img className='profile_avatar' src={profile?.avatar} alt="" />
-        <div className='user_name'>{profile?.username}</div> 
-        <div className='total_photos'>{photos?.length} Photos</div>
-        <div className='joined_date'>Joined {year}</div>
+        <div className='banner_info'>
+          <img className='profile_avatar' src={profile?.avatar} alt="" />
+          <div className='info_container'>
+            <div className='banner_info_left'>
+              <div className='user_name'>{profile?.username}</div> 
+            </div>
+            <div className='banner_info_right'>
+              <div className='total_photos'>{photos?.length} Photos</div>
+              <div className='joined_date'>Joined {year}</div>  
+            </div>
+          </div>
+        </div>
       </div>
       {sessionUser && Number(userId) === sessionUser.id && <UploadPhoto />}
       <div className='gallery'>
