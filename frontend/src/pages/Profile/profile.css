@@ -30,14 +30,16 @@
     align-content: space-between;
     justify-content: space-between;
     color: white;
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+    font-size: 16px;
     line-height: 18px;
     font-weight: 300;
     margin: 1rem;
 }
 .profile_avatar {
-    border-radius: 100%;
-    height: 6rem;
-    width: 6rem;
+    clip-path: circle();
+    height: 7.5rem;
+    width: 7.5rem;
     object-fit: cover;
 }
 .banner_info_left {
@@ -54,8 +56,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 50px;
-    margin-left: 140px;
-    margin-right: 140px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .gallery_image {
     height: 400px;

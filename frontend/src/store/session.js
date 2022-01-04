@@ -24,6 +24,7 @@ export const signup = (user) => async (dispatch) => {
         username,
         email,
         password,
+        
       }),
     });
     const data = await response.json();
