@@ -12,6 +12,18 @@ function* avatarGenerator() {
   }
 }
 
+function getRandomNum(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
+function createRandomDate() {
+  var date = new Date();
+  date.setDate(getRandomNum(1, 28));
+  date.setMonth(getRandomNum(1, 12));
+  date.setFullYear(date.getFullYear() - getRandomNum(1, 6));
+  return date;    
+}
+
 const fakeUsers = [
   {
     avatar: 'https://static.wikia.nocookie.net/nickelodeon/images/2/2c/Stock_Image_of_Doug_Dimmadome.png/revision/latest/top-crop/width/360/height/360?cb=20200323044439',
@@ -19,8 +31,8 @@ const fakeUsers = [
     username: 'Doug_DemoDome',
     hashedPassword: bcrypt.hashSync('password'),
     // TODO change fake dates to be random
-    createdAt: new Date(),
-    updatedAt: new Date()
+    createdAt: createRandomDate(),
+    updatedAt: createRandomDate()
   }
 ]
 
@@ -31,8 +43,8 @@ for (let i = 0; i <= 50; i++) {
     username: faker.internet.userName(),
     email:faker.internet.email(),
     hashedPassword:bcrypt.hashSync(`sadPassword&${i}`, 10),
-    createdAt: new Date(),
-    updatedAt: new Date()
+    createdAt: createRandomDate(),
+    updatedAt: createRandomDate()
   }
   fakeUsers.push(newUser);
 };
