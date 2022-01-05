@@ -60,36 +60,3 @@ function Profile() {
 }
 
 export default Profile;
-
-
-function myFunction() {
-  var d = new Date();
-  var hours = d.getHours();
-  var currentTime = d.toLocaleDateString();
-  var counter = SpreadsheetApp.getActiveSheet().getRange("B1").getValues();
-  
-  // if (hours >= 6 && hours <= 18) {
-  var response = UrlFetchApp.fetch("https://click-r.herokuapp.com/");
-  var response = UrlFetchApp.fetch("https://feedly-clone.herokuapp.com/");
-  SpreadsheetApp.getActiveSheet().getRange("A" + counter).setValue("Visted at " + currentTime + " " + hours + "h");
-  SpreadsheetApp.getActiveSheet().getRange("B1").setValue(Number(counter) + 1);
-
-  SpreadsheetApp.getActiveSheet().getRange('A' + counter).setValue("Visted at " + currentTime + " " + hours + "h");
-  SpreadsheetApp.getActiveSheet().getRange('B1').setValue(Number(counter) + 1);
-  // }
-}
-
-
-function myFunction() {
-  let d = new Date();
-  let hours = d.getHours();
-  let currentTime = d.toLocaleDateString();
-  let counter = SpreadsheetApp.getActiveSheet().getRange('B1').getValues();
-  
-  if (hours >= 8 && hours <= 16) {
-  let response = UrlFetchApp.fetch("https://click-r.herokuapp.com/");
-  let response = UrlFetchApp.fetch("https://feedly-clone.herokuapp.com/");
-  SpreadsheetApp.getActiveSheet().getRange('A' + counter).setValue("Visted at " + currentTime + " " + hours + "h");
-  SpreadsheetApp.getActiveSheet().getRange('B1').setValue(Number(counter) + 1);
-  }
- }
