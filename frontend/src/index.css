@@ -21,6 +21,7 @@ body {
     height: 26px;
     padding-right: 15px;
     padding-left: 15px;
+    cursor: pointer;
 }
 
 .button:hover {

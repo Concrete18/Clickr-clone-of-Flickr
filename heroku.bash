@@ -1,5 +1,6 @@
+branch=main
 if [ $1 == 'push' ]; then
-    git push heroku dev:master
+    git push heroku $branch
 elif [ $1 == 'migrate' ]; then
     heroku run npm run sequelize db:migrate
 elif [ $1 == 'seed' ]; then
@@ -13,7 +14,7 @@ elif [ $1 == 'reset' ]; then
     heroku run npm run sequelize db:migrate
     heroku run npm run sequelize db:seed:all
 elif [ $1 == 'pushseed' ]; then
-    git push heroku main
+    git push heroku $branch
     heroku run npm run sequelize db:seed:undo:all
     heroku run npm run sequelize db:migrate:undo:all
     heroku run npm run sequelize db:migrate

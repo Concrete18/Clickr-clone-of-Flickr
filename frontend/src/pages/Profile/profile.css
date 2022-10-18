@@ -38,8 +38,8 @@
 }
 .profile_avatar {
     clip-path: circle();
-    height: 7.5rem;
-    width: 7.5rem;
+    height: 100px;
+    width: 100px;
     object-fit: cover;
 }
 .banner_info_left {
@@ -54,7 +54,7 @@
 .gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-top: 50px;
     width: 80%;
     margin-left: auto;
@@ -68,11 +68,11 @@
     width: 10 vw;
 }
 .upload_form {
-    flex-direction: column;
     margin: auto;
 }
 .upload_button {
     margin: 10px;
+    cursor: pointer;
 }
 .show_photo_upload_button {
     display: flex;
@@ -80,19 +80,21 @@
     align-items: center;
     text-align: center;
     width: 282.85px;
+    margin: auto;
 }
 .upload_photo_inputs {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    flex-direction: column;
     padding: 5px;
 }
 .upload_photo_button {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 10px;
     width: 200px;
+    cursor: pointer;
+    margin: auto;
 }
