@@ -1,5 +1,5 @@
 // backend/config/database.js
-const config = require('./index');
+const config = require("./index");
 
 const db = config.db;
 const username = db.username;
@@ -13,14 +13,14 @@ module.exports = {
     password,
     database,
     host,
-    dialect: 'postgres',
-    seederStorage: 'sequelize',
-    logging: false // disables sql logging in backend
+    dialect: "postgres",
+    seederStorage: "sequelize",
+    logging: false, // disables sql logging in backend
   },
   production: {
-    use_env_variable: 'DATABASE_URL',
-    dialect: 'postgres',
-    seederStorage: 'sequelize',
+    use_env_variable: "DATABASE_URL",
+    dialect: "postgres",
+    seederStorage: "sequelize",
     dialectOptions: {
       ssl: {
         require: true,

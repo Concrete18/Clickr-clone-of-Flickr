@@ -1,10 +1,9 @@
 const { Album } = require("./models");
 
 async function list() {
-    return await Album.findAll();
-  }
+  return await Album.findAll();
+}
 
-  module.exports = {
-    list,
-  };
-  
+module.exports = {
+  list,
+};

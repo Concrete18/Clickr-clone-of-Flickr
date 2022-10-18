@@ -14,23 +14,28 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
+      return dispatch(
+        sessionActions.signup({ email, username, password })
+      ).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors([
+      "Confirm Password field must be the same as the Password field",
+    ]);
   };
 
   // FIXME sign up form
 
   return (
-    <div className='signup_div single_auth_container'>
+    <div className="signup_div single_auth_container">
       <h2>New User?</h2>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={`signUpErrors${idx}`}>{error}</li>)}
+          {errors.map((error, idx) => (
+            <li key={`signUpErrors${idx}`}>{error}</li>
+          ))}
         </ul>
         <label>
           Email
@@ -68,7 +73,9 @@ function SignupFormPage() {
             required
           />
         </label>
-        <button className='button' type="submit">Sign Up</button>
+        <button className="button" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );
